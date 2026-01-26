@@ -1,0 +1,111 @@
+\documentclass[14pt,letterpaper]{extarticle}
+\usepackage[utf8]{inputenc}
+
+% Set margins
+% https://tex.stackexchange.com/a/327136
+% this should replace use of the 'fullpage' package
+\usepackage[
+    includehead,
+    margin=2.5cm,
+    bmargin=2cm,
+]{geometry}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim} % This works better than comment for some reason
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{xfrac} % Fractions - https://tex.stackexchange.com/a/230973
+\usepackage{xcolor}
+% The magic latex drawing thing
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage[en-US,showdow]{datetime2}
+
+% Colored hyperlinks:
+% https://www.overleaf.com/learn/latex/Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+
+% Setup nice headings
+% https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage{fancyhdr}
+\usepackage{titling} % Save title for use in fancyhdr
+
+
+% Use black tombstone for QED
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Important sets
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\Z}{\mathbb{Z}}
+
+%
+% symbols
+%
+
+% name by meaning, not by character
+\newcommand{\grad}{\nabla}
+
+
+% New command for 'partial QED' using white tombstone
+\newcommand*{\partialqed}{$\hfill \square$ \\}
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+
+% Increased spaces spacing
+\usepackage{setspace} \onehalfspacing
+
+\title{Math 468 - Homework 1}
+\author{Nicholas Schlabach (nickninja@arizona.edu)}
+\DTMsavedate{titledate}{2026-01-24}
+\date{\DTMUsedate{titledate}}
+
+%% Copied from https://tex.stackexchange.com/a/2238
+%% Modified by Techcable 9/19/21 to use '[...]' instead of '(...)'
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead[L]{Nicholas Schlabach}
+\fancyhead[C]{\hspace{5mm}\Big(\thetitle{}\Big)}
+\fancyhead[R]{{\DTMsetdatestyle{mmddyy}\DTMusedate{titledate}}, Page \thepage}
+\fancyfoot{} % no footer
+\maketitle
+% maketitle automatically sets pagestyle=plain, override this
+\thispagestyle{fancy}
+
+
+\begin{center}
+\begin{enumerate}
+\item
+
+        Squaring $P$ gives the following matrix:
+        \[ P^2=\begin{bmatrix}
+            p^2 + p (q - 2) + 1 & -p (p + q - 2) \\
+-q (p + q - 2) & (p - 2) q + q^2 + 1)
+            \end{bmatrix}
+        \]
+    \begin{enumerate}
+    \item
+        By theorem, we know $\pi_2=\pi_0 P^2$. Since we are computing the conditional probability on the assumption $X_0=s_0$, then we want to consider the case that $\pi_0=\begin{bmatrix}
+            1 & 0
+        \end{bmatrix}$. Matrix multiplying shows that $\pi_2(0)$ simplifies to the upper-left entry of the matrix, giving a final answer of $P(X_2=s_0|X_0=s_0)=p^2+p(q-2)+1$.
+    \item
+        We can evaluate $\pi_2(0)$ by matrix multiplication. We only need to partially multiplyas we only care about the first entry:
+        \[ \pi_2(0)=\frac{1}{3}\Big(p^2+p(q-2)+1\Big)+\frac{2}{3}\Big(-q(p+q-2)\Big) \]
+        This value is the desired probability $P(X_2=s_1)$.
+\end{enumerate}
+\end{enumerate}
+\end{center}
+\end{document}
