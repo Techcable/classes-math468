@@ -105,6 +105,14 @@
         We can evaluate $\pi_2(0)$ by matrix multiplication. We only need to partially multiply as we only care about the first entry:
         \[ \pi_2(0)=\frac{1}{3}\Big(p^2+p(q-2)+1\Big)+\frac{2}{3}\Big(-q(p+q-2)\Big) \]
         This value is the desired probability $P(X_2=s_1)$.
+    \item
+        Let $A, B, C$ denote $X_0=s_0,X_1=s_0,X_2=2_0$ respectively, so that the desired quantity is $P(B|A,C)$.  By the definition of conditional probability:
+        \[ P(B|A,C)=\frac{P(X_0=s_0,X_1=s_0,X_2=s_0)}{P(X_0=s_0,X_2=s_0)} \]
+        We can use the result of (a) to get $P(A,C)=P(A)P(C|A)=\pi_0(0)(p^2+p(q-2)+1)$. Compmuting the probability of the intersection gives 
+        \[ P(A,B,C)=P(B,C|A)P(A)=P(C|B,A)P(B|A)P(A)  \]
+        Using the markov property, $P(C|B,A)=P(C|B)$. This means that the probabilities can be computed using a transition matrix and $\pi_0$. In particular $P(C|B)=1-p$, $P(B|A)=1-p$. This means that $P(A,B,C)=(1-p)^2\pi_0(0)$.
+        Combining with the previous result gives  the final answer:
+    \[ P(B|A,C)=\frac{(1-p)^2}{p^2+p(q-2)+1} \]
 \end{enumerate}
 \end{enumerate}
 \end{center}
