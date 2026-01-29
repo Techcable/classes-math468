@@ -36,6 +36,10 @@
 \usepackage{fancyhdr}
 \usepackage{titling} % Save title for use in fancyhdr
 
+% Shortcuts
+\newcommand*{\bP}{\mathbf{P}}
+
+
 
 % Use black tombstone for QED
 \renewcommand{\qedsymbol}{$\blacksquare$}
@@ -113,7 +117,35 @@
         Using the markov property, $P(C|B,A)=P(C|B)$. This means that the probabilities can be computed using a transition matrix and $\pi_0$. In particular $P(C|B)=1-p$, $P(B|A)=1-p$. This means that $P(A,B,C)=(1-p)^2\pi_0(0)$.
         Combining with the previous result gives  the final answer:
     \[ P(B|A,C)=\frac{(1-p)^2}{p^2+p(q-2)+1} \]
+
 \end{enumerate}
+\item
+    We want to consider fromula (29) on page 15 in the two state case $S=\{0,1\}$ for arbitrary $x,y$.  In the two-state case, the sum $\sum_{z\ne y}$ only has a single case where $z=1-y$.
+    This means the formula becomes
+        \begin{align}
+            P_x(T_y=n+1)&=\bP(x,1-y)P_{1-x}(T_y=n)  & n \ge 1
+        \end{align}
+    This is kind of like a recurrence relation, but a little different because we alternate between $P_x(T_y=\dots)$ and $P_{x-1}(T_y=\dots)$. Applying (1) to itself elimnates this problem, creating a true recurrence relation:
+    \begin{align}
+    P_x(T_y=n+2)&=\bP(x,1-y)\bP(1-x,1-y)P_x(T_y=n) & n \ge 1  
+    \end{align}
+    \begin{enumerate}
+    \item
+        We want to consider equation (2) where $y=0,x=0$. The values in (2) then become $\bP(x,1-y)=\bP(0,1)=p$ and $\bP(1-x,1-y)=\bP(1,1)=1-q$:
+        \begin{align}
+            \label{problem2generic}
+             P_x(T_y=n+2)&=p(1-q)P(T_y=n)
+        \end{align}
+        Notice that this equation is also valid for $x=1$, as the product is merly swapped and multiplication is commutative. This means \eqref{problem2generic} is valid for any $x\in S$, as long as $y=0$; \\
+        Split into cases depending on $n\ge 1$: \\
+        Case 1: If $n=2k+1$ is odd. \\
+        In this case, we apply (2) exactly $k$ times, going from $n=1$ to $n=2k+1$. This gives the result 
+        \[ P_x(T_y=n)=p^k(1-q)^k(1-p) \]
+        This equation is still valid where $n=1$ and $k=0$. \\
+        Case 2: If $n=2k$ even and $n\ge 2$. \\
+        Apply the result of case 1 to $n'=2k-1\ge 1$. This gives $P_x(T_y=2k-1)=p^k(1-q)^k(1-p)$. Apply equation (1) to get 
+        \[ P_x \]
+    \end{enumerate}
 \end{enumerate}
 \end{center}
 \end{document}
