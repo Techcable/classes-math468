@@ -134,6 +134,29 @@
              P_0(T_1=n) &=\bP(0,0)^{n-1}\bP(0,1)=(1-p)^{n-1}p & n\ge 1
         \end{align*}
     \end{enumerate}
+\item
+    \begin{enumerate}
+    \item The states correspond to points on the unit circle with the following radians:
+        \[ \{0,2\pi/N,2(2\pi/N),3(2\pi/N),\dots,(N-1)(2\pi/N)\} \] Call these points $s_0,\dots,s_{n-1}$ for convenience. The point $s_i$ has cartesian coordinaete $(\sin \big(i(2\pi/N)\big),\cos\big( i(2\pi/N)\big)$. In general, these positions are irrational. But for $N=6$ we get some well-known unit circle positions 
+        \[ \{(0,1),(\frac{1}{2},\frac{\sqrt{3}}{2}),(-\frac{1}{2},\frac{\sqrt{3}}{2}),(-1,0),(-\frac{1}{2},-\frac{\sqrt{3}}{2}),(-\frac{1}{2},-\frac{\sqrt{3}}{2})\} \] 
+        Moving counterclockwise, we go from $s_i$ to $s_{i+1}$ with probability $P$ whenever $0 \le i<N-1$. The other main movement is counterclockwise which goes from $s_{i+1}\to s_i$ with probability $1-p$. Adding in handling of the wrapparound, $\bP$ can be defined in the following way:
+        \begin{align*}
+            \bP(k,k+1)& =p & \text{if } k<N-1 \\
+            \bP(k,k-1)& =1-p &  \text{if }k>0 \\
+            \bP(N-1,0)&= p & \\
+            \bP(0,N-1)&= 1-p & \\
+            \bP(x,y)&=0 & \text{otherwise}
+        \end{align*}
+        When $N=6$ we get the following matrix
+        \[ M=\begin{bmatrix}
+            0 & p & 0 & 0 & 0 & 1-p \\
+            1-p & 0 & p & 0 & 0 & 0 \\
+            0 & 1-p & 0 & p & 0 & 0 \\
+            0 & 0 & 1-p & 0 & p & 0  \\
+            0 & 0 & 0 & 1-p & 0 & p  \\
+            p & 0 & 0 & 0 & 1-p & 0  \\
+        \end{bmatrix}\]
+    \end{enumerate}
 \end{enumerate}
 \end{center}
 \end{document}
