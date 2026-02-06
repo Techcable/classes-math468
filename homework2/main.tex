@@ -120,6 +120,16 @@
         By definition, $n_0$ is the smallest number such that a sequence of state transitions from $x$ to $y$ exists taking $n_0$ steps.
         But this sequence of states with length $n_0$ having nonzero probability is equivalent to saying that $P_x(T_y=n_0)>0$. We know from part (b) that $n_0\le d-1$, meaning that $P_x(T_y\le d-1)>0$.
     \end{enumerate}
+\item
+    \begin{enumerate}
+    \item
+        In the case of the random walk on the unit circle, all states fall into a single communication class, making the system irreducible. This is true regardless of whether $p=1$ or $p=0$ due to the effect of wraparound.
+    \item
+        
+        Label the states $s_1s_2\dots s_N$. Assume that $N\ge 2$ or else we get a degenerate case with a single state. \\In the case where $p=1$, then each of the states $s_1,s_2,\dots s_{N-2}$ fall into their own communication class. The states $s_N \leftrightarrow s_{N-1}$ communicate with each other as $s_N$ is reflecting. This means there are $N-1$ commucation classes and the system is reducible unless $N=2$. The same thing happens in the $q=1$ case due to symmetry. \\
+        \vspace{3mm}
+        When $0<p<1$, then all the states communicate with each other and so they all fall into a single communication class. This means that the system is irreducible. 
+    \end{enumerate}
 \end{enumerate}
 \end{center}
 \end{document}
