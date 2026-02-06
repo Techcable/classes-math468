@@ -1,0 +1,111 @@
+\documentclass[14pt,letterpaper]{extarticle}
+\usepackage[utf8]{inputenc}
+
+% Set margins
+% https://tex.stackexchange.com/a/327136
+% this should replace use of the 'fullpage' package
+\usepackage[
+    includehead,
+    margin=2.5cm,
+    bmargin=2cm,
+]{geometry}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim} % This works better than comment for some reason
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{xfrac} % Fractions - https://tex.stackexchange.com/a/230973
+\usepackage{xcolor}
+% The magic latex drawing thing
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage[en-US,showdow]{datetime2}
+
+% Colored hyperlinks:
+% https://www.overleaf.com/learn/latex/Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+
+% Setup nice headings
+% https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage{fancyhdr}
+\usepackage{titling} % Save title for use in fancyhdr
+
+% Shortcuts
+\newcommand*{\bP}{\mathbf{P}}
+
+
+
+% Use black tombstone for QED
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Important sets
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\Z}{\mathbb{Z}}
+
+%
+% symbols
+%
+
+% name by meaning, not by character
+\newcommand{\grad}{\nabla}
+
+
+% New command for 'partial QED' using white tombstone
+\newcommand*{\partialqed}{$\hfill \square$ \\}
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+
+% Increased spaces spacing
+\usepackage{setspace} \onehalfspacing
+
+\title{Math 468 - Homework 1}
+\author{Nicholas Schlabach (nickninja@arizona.edu)}
+\DTMsavedate{titledate}{2026-02-04}
+\date{\DTMUsedate{titledate}}
+
+%% Copied from https://tex.stackexchange.com/a/2238
+%% Modified by Techcable 9/19/21 to use '[...]' instead of '(...)'
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead[L]{Nicholas Schlabach}
+\fancyhead[C]{\hspace{5mm}\Big(\thetitle{}\Big)}
+\fancyhead[R]{{\DTMsetdatestyle{mmddyy}\DTMusedate{titledate}}, Page \thepage}
+\fancyfoot{} % no footer
+\maketitle
+% maketitle automatically sets pagestyle=plain, override this
+\thispagestyle{fancy}
+
+
+\begin{center}
+\begin{enumerate}
+\item
+    \begin{enumerate}
+    \item
+        This case has the following transition matrix:
+        \[ \bP=\begin{bmatrix}
+            1-p & p \\
+            0 & 1 
+        \end{bmatrix} \]
+        Since $\bP(1,0)=q=0$, then $\rho_{10}=0$ and state $s_1$ does not lead to state $s_0$. This means $s_0$ and $s_1$ do not communicate and so fall into separate communication classes, making this a reducible markov chain. Since $\bP(1,1)=1$ then $s_1$ is absorbing and  $\rho_{11}=1$. This means that $s_1$ is also recurrent. Since $P(0,1)>0\implies \rho_{01}>1$ and $1$ does not lead back to $0$, then state $s_0$ is transient. The communication class $\{s_1\}$ is closed but $\{s_0\}$ is not closed.
+    \item
+        In the case $p=q=0$,  the transition matrix $\bP$ is the identity matrix. Both states $s_0, s_1$ are absorbing meaning they are both recurrent. Neither state leads to the other so there are two communication classes and the system is irreducible. Both communication classes are closed. \\
+        In the case $p=q=1$, both states communicate $s_0 \leftrightarrow s_1$ and so there is a single cloased communication class containing both states. In fact, because $P(0,1)=1=P(1,0)$ then both states are recurrent.
+    \end{enumerate}
+
+\end{enumerate}
+\end{center}
+\end{document}
