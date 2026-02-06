@@ -105,7 +105,21 @@
         In the case $p=q=0$,  the transition matrix $\bP$ is the identity matrix. Both states $s_0, s_1$ are absorbing meaning they are both recurrent. Neither state leads to the other so there are two communication classes and the system is irreducible. Both communication classes are closed. \\
         In the case $p=q=1$, both states communicate $s_0 \leftrightarrow s_1$ and so there is a single cloased communication class containing both states. In fact, because $P(0,1)=1=P(1,0)$ then both states are recurrent.
     \end{enumerate}
-
+\setcounter{enumi}{2}
+\item
+    \begin{enumerate}
+    \item
+        BWOC, assume that the states are not all distinct, so that $x_m=x_k$ for some $m\neq k$.
+        WLOG, assme that $m<k$.
+        Because $P(x_i,x_{i+1})>0$ for all $0< i<n_0$, then the following series of state transitions has nonzero probability: $xx_1\dots x_mx_{k+1}\dots x_{n-1}y$.
+        This chain has length $n^*:=n_0-(k-m)<n_0$. This means that $\bP^{n^*}(x,y)>0$ with $n^*<n_0$, contradicting the  the definition of $n_0$ being the samllest integer satisfying that property.
+    \item
+        Because of (a), the sequence of transitions $xx_1,\dots, x_{n-1}y$ has no duplicates states and so the corresponding set $\{x,x_1,\dots,x_{n-1}y\}$ has cardinality $n_0+1$.
+        However, since there are only $d$ states in total, than $n_0+1\le d$. This is equivalent to the desired result.
+    \item
+        By definition, $n_0$ is the smallest number such that a sequence of state transitions from $x$ to $y$ exists taking $n_0$ steps.
+        But this sequence of states with length $n_0$ having nonzero probability is equivalent to saying that $P_x(T_y=n_0)>0$. We know from part (b) that $n_0\le d-1$, meaning that $P_x(T_y\le d-1)>0$.
+    \end{enumerate}
 \end{enumerate}
 \end{center}
 \end{document}
