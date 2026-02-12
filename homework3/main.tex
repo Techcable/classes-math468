@@ -101,6 +101,13 @@
     \item
         If $C$ is a finite closed communication class, then $C$ is recurrent.
     \end{enumerate}
+\setcounter{enumi}{3}
+\item
+    Assuming $0<p<1$, then states $\{1,\dots,d-1\}$ are transient and $\{0,d\}$ are recurrent. Fix a state $0<x<d$, because $T_0$ is absorbing, $P_x(T_0<T_d)$ is equivalent to $P_x(T_0<\infty)$ regardless of $0<x<d$. \\
+    Attempting to write $P_1(T_0<\infty)$ as a sum gives
+    \[ P_1(T_0<\infty)=\sum_{m=1}^\infty \bP^m(1,0) \]
+    Expanding $\bP^m(1,0)$ over $0<k<d-1$ steps  to the right gives $\bP^m(1,0)=\sum_{k=0}^{d-1} p^kd^{1-k}$ and substituting 
+    \[ P_1(T_0<\infty)=\sum_{m=1}^\infty \sum_{k=1}^{\min(m,d-1)} p^kq^{m-k} \]
 \end{enumerate}
 \end{center}
 \end{document}
