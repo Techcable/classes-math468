@@ -103,11 +103,16 @@
     \end{enumerate}
 \setcounter{enumi}{3}
 \item
-    Assuming $0<p<1$, then states $\{1,\dots,d-1\}$ are transient and $\{0,d\}$ are recurrent. Fix a state $0<x<d$, because $T_0$ is absorbing, $P_x(T_0<T_d)$ is equivalent to $P_x(T_0<\infty)$ regardless of $0<x<d$. \\
-    Attempting to write $P_1(T_0<\infty)$ as a sum gives
-    \[ P_1(T_0<\infty)=\sum_{m=1}^\infty \bP^m(1,0) \]
-    Expanding $\bP^m(1,0)$ over $0<k<d-1$ steps  to the right gives $\bP^m(1,0)=\sum_{k=0}^{d-1} p^kd^{1-k}$ and substituting 
-    \[ P_1(T_0<\infty)=\sum_{m=1}^\infty \sum_{k=1}^{\min(m,d-1)} p^kq^{m-k} \]
+    First handle the case $0<p<1$: The states $\{1,\dots,d-1\}$ are transient and $\{0,d\}$ are recurrent. Fix a state $0<x<d$, because $T_0$ is absorbing, $P_x(T_0<T_d)$ is equivalent to $P_x(T_0<\infty)$ regardless of $0<x<d$. \\
+    Professor says that $P_?(T_0<\infty)$ is called an "absorbption probability." The sum $P_1(T_0<\infty)=\sum_{r=0}^\infty {2r+1 \choose r}q^{r+1}p^r$ does not work because you can not choose $d+7$ moves right then $d+8$ moves left. You would encounter the absorbing state first! \\
+    Instead, define the following function $\alpha(j)=P_j(T_0< \infty)$. Clearly $\alpha(0)=1$. \\
+    Assuming we start at $0<j<d$, the event $\{T_0<\infty\}$ can be partitioned into $\{T_0<\infty,X_1=j-1\}, \{T_0<\infty,X_1=j+1\}$. \\
+    Using the partition theorem we get the following:
+    \[ \alpha(j)=P_{j-1}(T_0<\infty)q+P_{j-1}(T_0<\infty)p=\alpha(j-1)q+\alpha(j+1)p \]
+    This is a second-order difference equation, analogous to a second-order differential equation $ay''(t)+by'(t)+cy(t)=0$. \\
+    Guess: $\alpha(j)=\beta^j$ to get $\beta^j=q\beta^{j-1}+p\beta^{j+1}$. Simplifying gives $0=p\beta^2-\beta+q$.  This gives $\beta_{1,2}=\frac{1\pm \sqrt{1^2-4(pq)}}{2p}$ then we get $\alpha(j)=c_1\beta_1^j+c_2\beta_2^j$ where $c_1,c_2$ are determined by the boundary coefficients. \\
+    We know that $\alpha(0)=1$ and $\alpha(d)=1$. Simplifying $1-4(pq)=1-4p(1-p)=1-4p+4p^2=(1-2p)^2$ then $\beta_{1,2}=\frac{1\pm(1-2p)}{2p}$. So $\beta_1=\frac{2-2p}{2p}=\frac{q}{p}, \beta_2=1$ (still assuming $0<p<1$). So the final form is $\alpha(j)=c_1(\frac{p}{q})^j+c_2$. \\
+    Using the boundary conditions $\alpha(0)=1=c_1+c_2$ and $\alpha(d)=0=c_1(\frac{p}{q})^d+c_2$. This means that $c_2=1-c_1$. Then $1=c_1(\frac{p}{q})^d+1-c_1$ or $c_1=c_1(\frac{p}{q})^d$. This is only possible if $c_1=0$. So we get $\alpha(j)=1$.
 \end{enumerate}
 \end{center}
 \end{document}
