@@ -1,0 +1,104 @@
+\documentclass[14pt,letterpaper]{extarticle}
+\usepackage[utf8]{inputenc}
+
+% Set margins
+% https://tex.stackexchange.com/a/327136
+% this should replace use of the 'fullpage' package
+\usepackage[
+    includehead,
+    margin=2.5cm,
+    bmargin=2cm,
+]{geometry}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim} % This works better than comment for some reason
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{xfrac} % Fractions - https://tex.stackexchange.com/a/230973
+\usepackage{xcolor}
+% The magic latex drawing thing
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage[en-US,showdow]{datetime2}
+
+% Colored hyperlinks:
+% https://www.overleaf.com/learn/latex/Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+
+% Setup nice headings
+% https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage{fancyhdr}
+\usepackage{titling} % Save title for use in fancyhdr
+
+% Shortcuts
+\newcommand*{\bP}{\mathbf{P}}
+
+
+
+% Use black tombstone for QED
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Important sets
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\Z}{\mathbb{Z}}
+
+%
+% symbols
+%
+
+% name by meaning, not by character
+\newcommand{\grad}{\nabla}
+
+
+% New command for 'partial QED' using white tombstone
+\newcommand*{\partialqed}{$\hfill \square$ \\}
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+
+% Increased spaces spacing
+\usepackage{setspace} \onehalfspacing
+
+\title{Math 468 - Homework 3}
+\author{Nicholas Schlabach (nickninja@arizona.edu)}
+\DTMsavedate{titledate}{2026-02-11}
+\date{\DTMUsedate{titledate}}
+
+%% Copied from https://tex.stackexchange.com/a/2238
+%% Modified by Techcable 9/19/21 to use '[...]' instead of '(...)'
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead[L]{Nicholas Schlabach}
+\fancyhead[C]{\hspace{5mm}\Big(\thetitle{}\Big)}
+\fancyhead[R]{{\DTMsetdatestyle{mmddyy}\DTMusedate{titledate}}, Page \thepage}
+\fancyfoot{} % no footer
+\maketitle
+% maketitle automatically sets pagestyle=plain, override this
+\thispagestyle{fancy}
+
+
+\begin{center}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item
+    \begin{enumerate}
+    \item
+        This is not necessarily true for infinite markov chains. Consider the random walk on $\mathbb{Z}$ with probability $.9$ to go to the right and $.1$ to the left. All the states form a single communication class, as there is a nonzero probability of going between any two fixed states. It follows that the graph is both irreducible and closed. \\
+        Despite this, the drift to the right means there are no recurring states.
+    \end{enumerate}
+\end{enumerate}
+\end{center}
+\end{document}
