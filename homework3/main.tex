@@ -92,6 +92,21 @@
 
 \begin{center}
 \begin{enumerate}
+\item
+    State 3 always transitions to state 1. State 1 always transitions to state 2. State 2 always tranistions back to state 3. \\
+        This means that $\{3,4,2\}$ forms a closed recurrent communication class. 
+    \begin{enumerate}
+    \item
+        Has probability zero. There is no possible way to get from 3 to 5 because the set $\{3,4,2\}$ is closed.
+    \item
+        Has probability zero. There is no possible way to get from 3 to 5 because the set $\{3,4,2\}$ is closed.
+    \item
+        This can only happen if going from zero to 4 to 6. It has nonzero probability
+    \setcounter{enumii}{3}
+    \item
+        We know that $\rho_{00}=1/2$ because zero is the only state that leads to zero (with probability zero). Using the formula this means that $E_0(N(0))=\frac{1/2}{1-1/2}=1$. So expected number of return visits from zero to zero is 1.
+        \end{enumerate}
+
 \setcounter{enumi}{1}
 \item
     \begin{enumerate}
