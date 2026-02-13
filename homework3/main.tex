@@ -111,8 +111,9 @@
     \[ \alpha(j)=P_{j-1}(T_0<\infty)q+P_{j-1}(T_0<\infty)p=\alpha(j-1)q+\alpha(j+1)p \]
     This is a second-order difference equation, analogous to a second-order differential equation $ay''(t)+by'(t)+cy(t)=0$. \\
     Guess: $\alpha(j)=\beta^j$ to get $\beta^j=q\beta^{j-1}+p\beta^{j+1}$. Simplifying gives $0=p\beta^2-\beta+q$.  This gives $\beta_{1,2}=\frac{1\pm \sqrt{1^2-4(pq)}}{2p}$ then we get $\alpha(j)=c_1\beta_1^j+c_2\beta_2^j$ where $c_1,c_2$ are determined by the boundary coefficients. \\
-    We know that $\alpha(0)=1$ and $\alpha(d)=1$. Simplifying $1-4(pq)=1-4p(1-p)=1-4p+4p^2=(1-2p)^2$ then $\beta_{1,2}=\frac{1\pm(1-2p)}{2p}$. So $\beta_1=\frac{2-2p}{2p}=\frac{q}{p}, \beta_2=1$ (still assuming $0<p<1$). So the final form is $\alpha(j)=c_1(\frac{p}{q})^j+c_2$. \\
-    Using the boundary conditions $\alpha(0)=1=c_1+c_2$ and $\alpha(d)=0=c_1(\frac{p}{q})^d+c_2$. This means that $c_2=1-c_1$. Then $1=c_1(\frac{p}{q})^d+1-c_1$ or $c_1=c_1(\frac{p}{q})^d$. This is only possible if $c_1=0$. So we get $\alpha(j)=1$.
+    We know that $\alpha(0)=1$ and $\alpha(d)=1$. Simplifying $1-4(pq)=1-4p(1-p)=1-4p+4p^2=(1-2p)^2$ then $\beta_{1,2}=\frac{1\pm(1-2p)}{2p}$. So $\beta_1=\frac{2-2p}{2p}=\frac{q}{p}, \beta_2=1$. So $\alpha$ takes the form $\alpha(j)=c_1(\frac{p}{q})^j+c_2$. Using the boundary conditions $\alpha(0)=1=c_1+c_2$ and $\alpha(d)=0=c_1(\frac{p}{q})^d+c_2$. This means that $c_2=1-c_1$ and $c_1=\big(1-(p/q)^d\big)^{-1}=1$. Plugging these coefficients back into $\alpha$ and then simplifying: 
+    \[ \alpha(j)=\frac{(p/q)^j}{1-(p/q)^d}+1-\frac{1}{1-(p/q)^d}=\frac{(p/q)^j-(p/q)^d}{1-(p/q)^d}, \; 0<j<d \]
+    But by definition, $\alpha(j)=P_j(T_0<\infty)$. Since state $d$ is absorbing, $P_j(T_0<\infty)=P_j(T_0<T_d)$ and we have the desired result.
 \end{enumerate}
 \end{center}
 \end{document}
