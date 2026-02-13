@@ -105,6 +105,31 @@
         % This interchange is not because [something dominated converage theorem]
         Interchanging the sum of limits with the limit of sums is not necessarily valid for infinite sums.
     \end{enumerate}
+\item
+    \begin{enumerate}
+    \item
+        % Expand $|p-q|^2=(p-q)^2=\big(p-(1-p)\big)^2=(2p-1)^2=4p^2-4p+1$. Using the fact 
+        % If we can prove the squares are equal $|p-q|^2=1-4pq$ than this will imply that $|p-q|=(1-4pq)^{1/2}$: \\
+        First I will prove that $|p-q|^2=-(1-4pq)$: \\
+        \begin{tabular}{lll}
+             & $|p-q|^2$ \\
+             = & $(p-q)^2$ \\
+             = & $p^2-2pq+q^2$  & [binomial theorem] \\
+             = & $p^2-2p(1-p)+(1-p)^2$ \hspace{20mm} & [substitute $q=1-p$] \\
+             = & $p^2-2p+2p^2+1^2-2p+p^2$ & [distribute \& binomial thm.] \\
+             = & $4p^2-4p+1$ & [simplify] \\
+             = & $4p(p-1)+1$ & [factor] \\
+             = & $4pq+1$ & [definition of $q$] \\
+             = & $-(1-4pq)$
+        \end{tabular}
+        Proving the squares are equal means the equation is equal up to sign. We know that $1-4pq\ge 0$ so then $-(1-4pq)\le 0$. 
+    \item
+        % TODO: Validity of E_x(N(y)) for recurrent states? The EV would be infinte in that case
+        Part (a) of Thm. 1 tells us that $E_x(N(y))=\frac{p_{xy}}{1-p_{yy}}$. In this case $x=y$ and we get $E_0(N(0))=\frac{p_{yy}}{1-p_{yy}}$. Pattern matching with the value computed for $E_0(N(0)$ we get $p_yy=1-(1-4pq)^{1/2}$. Using the result of part (b) we get $\rho_{yy}=1-|p-q|$ as desired. \\
+    \item
+        If $p \ne \frac{1}{2}$, then $|p-q|\ne 0$ so $\rho_{yy}=1-|p-q|<1$. This is the definition of a transient state. \\
+        If $p=\frac{1}{2}$ than $|p-q|=0$, so $\rho_{yy}=1-|p-q|=1$, which is the definition of a recurrent state.
+    \end{enumerate}
 \setcounter{enumi}{3}
 \item
     First handle the case $0<p<1$: The states $\{1,\dots,d-1\}$ are transient and $\{0,d\}$ are recurrent. Fix a state $0<x<d$, because $T_0$ is absorbing, $P_x(T_0<T_d)$ is equivalent to $P_x(T_0<\infty)$ regardless of $0<x<d$. \\
