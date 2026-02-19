@@ -131,7 +131,12 @@
     The matrix $\bP$ has eigenvalues $\lambda_1=1, \lambda_2=\frac{1}{5}, \lambda_3=0$. These have associated eigenvectors $v_1=\langle 1,1,1\rangle, v_2=\langle-1,0,1\rangle, v_3=\langle 1,\frac{-3}{2},1\rangle$.
     %  The eigenvalue approach seems problematic since it only gives long-term behavior (steady-state), not necessarily every stationary distribution.
     % This is because stationary distributions can be linear combinations of the bad eigenvectors like v_2=(-1,0,1).
-    \end{comment} 
+    \end{comment}
+\setcounter{enumi}{2}
+\item
+    Assume that $\pi$ is a stationary distribution, that $x$ leads to $y$,  and that $\pi(x)>0$ 
+     The fact $x\to y$ means that $P^n(x,y)>0$ for some $n \in \mathbb{Z}^+$.  \\
+     Using equation (3) from page 46, we get $ \sum_{a \in S}\pi(a)\bP^m(a,b)=\pi (b)$ for every $m>0,a,b \in S$. We know $\pi(x)>0$ by assumption and $\bP^n(x,y)> 0$ since $x\to y$. This means that $\pi(x)\bP^n(x,y)>0$ is positive. Since all other terms of the sum are nonnegative, this means that $\pi(y)>0$ is also positive. \qed
 \end{enumerate}
 \end{center}
 \end{document}
