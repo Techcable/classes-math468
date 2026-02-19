@@ -146,9 +146,27 @@
         0 & \text{otherwise}
     \end{cases} \] 
     \end{comment}
-    According to page 52 of the book, a birth-death chain has a stationary distribution iff the series in equation (11) converges. Using the known values of $p_0=1$ and $0<p_x<1$, equation (11) becomes
-    \[ \sum_{x=1}^\infty\frac{p_0\dots p_{x-1}}{q_1\dots q_x}=\sum_{x=1}^\infty\frac{p^{x-1}}{(1-p)^x}=\frac{1}{p}\sum_{x=1}^\infty(\frac{p}{1-p})^x \]
-    Now this geometric series converges iff $|\frac{p}{1-p}|<1$. Since both $p,1-p$ are positive we can drop the absolute values and rearrange to get the equivalent condtiion $p<1-p$ or $p<1/2$. This means that the equation has a stationary distribution iff $p<1/2$.
+    According to page 52 of the book, a birth-death chain has a stationary distribution iff the series in equation (11) converges. Using the known values of $p_0=1$ and $0<p_x<1$, equation (11) in the book becomes
+    \[ S_1:=\sum_{x=1}^\infty\frac{p_0\dots p_{x-1}}{q_1\dots q_x}=\sum_{x=1}^\infty\frac{p^{x-1}}{(1-p)^x}=\frac{1}{p}\sum_{x=1}^\infty(\frac{p}{1-p})^x \]
+    Now this geometric series converges iff $|\frac{p}{1-p}|<1$. Since both $p,1-p$ are positive we can drop the absolute values and rearrange to get the equivalent condtiion $p<1-p$ or $p<1/2$. This means that the equation has a stationary distribution iff $p<1/2$. \\
+    Let $r:=\frac{p}{1-p}$.  For the remainder of the problem, assume that $p<1/2$  $0<r<1$, so we can find the equilibrium solution $\pi$. Using the formula for the sum of a geometric series starting at $x=1$ we can compute the sum $S_1=\frac{1}{p}\big(\frac{r}{1-r}\big)=\frac{1}{1-2p}$.  \\
+    Now, as established in class on Feb. 19th and in the book on page 51, we get the recurrence relation $\pi(y+1)=\frac{p_y}{q_{y+1}}\pi(y)$. Expanding this gives equation (8) on page 51, which can be significantly simplified using the fact that $p_x=p, q_x=1-p$ are independent of $x\ge 1$:
+    \begin{align}
+    \label{pix_product}
+ \pi(x)= &\frac{p_0\dots p_{x-1}}{q_1\dots q_x}\pi(0)=\frac{p^{x-1}}{(1-p)^x}\pi(0)=\frac{1}{p}r^x\pi(0) & x\ge 1
+    \end{align}
+    We know that $\sum_{x=0}^n \pi(x)=1$ because $\pi$ forms a probability distribution. Combining this condition with \eqref{pix_product} and factoring out $\pi(0)$ we get
+    \begin{align}
+        \label{normalization_cond1}
+        1=\sum_{x=0}^n\pi(x)=\pi(0)+\sum_{x=1}^n\frac{1}{p}r^x\pi(0)=\pi(0)\Big(1+\sum_{x=1}^n\frac{1}{p}r^x\Big)
+    \end{align}
+    The sum in \eqref{normalization_cond1} is equal to $S_1$, whose value we have already computed
+    \begin{align}
+        1=\pi(0)\big(1+S_1\big)=\pi(0)\big(1+\frac{1}{1-2p}\big)=\pi(0)\big(\frac{2-2p}{1-2p})
+    \end{align}
+    This allows us to determine the value of $\pi(0)=\frac{1-2p}{2-2p}$, which in turn allows us to compute all the other states using \eqref{pix_product}:
+    \[ \pi(0)=\frac{1-2p}{2-2p}, \hspace{5mm}\pi(x)=\big(\frac{2}{1-2p}\big)r^{x-1} \text{ if }x\ge 1 \]
+    Along with the condition $p<\frac{1}{2}$, this gives the final answer.
 \end{enumerate}
 \end{center}
 \end{document}
