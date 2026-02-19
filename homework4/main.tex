@@ -137,6 +137,18 @@
     Assume that $\pi$ is a stationary distribution, that $x$ leads to $y$,  and that $\pi(x)>0$ 
      The fact $x\to y$ means that $P^n(x,y)>0$ for some $n \in \mathbb{Z}^+$.  \\
      Using equation (3) from page 46, we get $ \sum_{a \in S}\pi(a)\bP^m(a,b)=\pi (b)$ for every $m>0,a,b \in S$. We know $\pi(x)>0$ by assumption and $\bP^n(x,y)> 0$ since $x\to y$. This means that $\pi(x)\bP^n(x,y)>0$ is positive. Since all other terms of the sum are nonnegative, this means that $\pi(y)>0$ is also positive. \qed
+\item
+    \begin{comment}
+    Based on the discussion in section 1.7 we get $r_x=0$ and the following transition function:
+    \[ \bP(x,y)=\begin{cases}
+        1-p & y=x-1 \\
+        p & y=x+1 \\
+        0 & \text{otherwise}
+    \end{cases} \] 
+    \end{comment}
+    According to page 52 of the book, a birth-death chain has a stationary distribution iff the series in equation (11) converges. Using the known values of $p_0=1$ and $0<p_x<1$, equation (11) becomes
+    \[ \sum_{x=1}^\infty\frac{p_0\dots p_{x-1}}{q_1\dots q_x}=\sum_{x=1}^\infty\frac{p^{x-1}}{(1-p)^x}=\frac{1}{p}\sum_{x=1}^\infty(\frac{p}{1-p})^x \]
+    Now this geometric series converges iff $|\frac{p}{1-p}|<1$. Since both $p,1-p$ are positive we can drop the absolute values and rearrange to get the equivalent condtiion $p<1-p$ or $p<1/2$. This means that the equation has a stationary distribution iff $p<1/2$.
 \end{enumerate}
 \end{center}
 \end{document}
