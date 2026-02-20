@@ -124,7 +124,7 @@
     \end{amatrix} \]
     This means there is only one solution to the system of equations:
     \[ \pi^*=\langle \frac{1}{3},\frac{1}{3},\frac{1}{3}\rangle \] \\
-    But by definition of every stationary distribution $\pi$ must satisfy the requirements $\bP\pi=\pi$ and $\sum_{i=1}^n \pi_i=1$. Since $\pi^*$ is the only distribution which meats these requirements, then $\pi^*$ is the unique stationary distribution for $\bP$. 
+    But by definition, every stationary distribution $\pi$ must satisfy the requirements $\bP\pi=\pi$ and $\sum_{i=1}^n \pi_i=1$. Since $\pi^*$ is the only distribution that meets these requirements, then $\pi^*$ is the unique stationary distribution for $\bP$. 
     \begin{comment}
     \vspace{3mm}
     Approach 2: \\
@@ -134,7 +134,7 @@
     \end{comment}
 \setcounter{enumi}{2}
 \item
-    Assume that $\pi$ is a stationary distribution, that $x$ leads to $y$,  and that $\pi(x)>0$ 
+    Assume that $\pi$ is a stationary distribution, that $x$ leads to $y$, and that $\pi(x)>0$ 
      The fact $x\to y$ means that $P^n(x,y)>0$ for some $n \in \mathbb{Z}^+$.  \\
      Using equation (3) from page 46, we get $ \sum_{a \in S}\pi(a)\bP^m(a,b)=\pi (b)$ for every $m>0,a,b \in S$. We know $\pi(x)>0$ by assumption and $\bP^n(x,y)> 0$ since $x\to y$. This means that $\pi(x)\bP^n(x,y)>0$ is positive. Since all other terms of the sum are nonnegative, this means that $\pi(y)>0$ is also positive. \qed
 \item
@@ -148,7 +148,7 @@
     \end{comment}
     According to page 52 of the book, a birth-death chain has a stationary distribution iff the series in equation (11) converges. Using the known values of $p_0=1$ and $0<p_x<1$, equation (11) in the book becomes
     \[ S_1:=\sum_{x=1}^\infty\frac{p_0\dots p_{x-1}}{q_1\dots q_x}=\sum_{x=1}^\infty\frac{p^{x-1}}{(1-p)^x}=\frac{1}{p}\sum_{x=1}^\infty(\frac{p}{1-p})^x \]
-    Now this geometric series converges iff $|\frac{p}{1-p}|<1$. Since both $p,1-p$ are positive we can drop the absolute values and rearrange to get the equivalent condtiion $p<1-p$ or $p<1/2$. This means that the equation has a stationary distribution iff $p<1/2$. \\
+    Now this geometric series converges iff $|\frac{p}{1-p}|<1$. Since both $p,1-p$ are positive, we can drop the absolute values and rearrange to get the equivalent condition $p<1-p$ or $p<1/2$. This means that the equation has a stationary distribution iff $p<1/2$. \\
     Let $r:=\frac{p}{1-p}$.  For the remainder of the problem, assume that $p<1/2$  $0<r<1$, so we can find the equilibrium solution $\pi$. Using the formula for the sum of a geometric series starting at $x=1$ we can compute the sum $S_1=\frac{1}{p}\big(\frac{r}{1-r}\big)=\frac{1}{1-2p}$.  \\
     Now, as established in class on Feb. 19th and in the book on page 51, we get the recurrence relation $\pi(y+1)=\frac{p_y}{q_{y+1}}\pi(y)$. Expanding this gives equation (8) on page 51, which can be significantly simplified using the fact that $p_x=p, q_x=1-p$ are independent of $x\ge 1$:
     \begin{align}
