@@ -169,9 +169,9 @@
     % The Markov chain must satisfy $\sum_{y\in S}^\infty \bP(x,y)=\sum_{y=0}^\infty \alpha_y=1$ for every $x \in S$. So 
 
 \item
-    Assume that $\pi$ is a stationary distribution, that $x$ leads to $y$, and that $\pi(x)>0$ 
-     The fact $x\to y$ means that $P^n(x,y)>0$ for some $n \in \mathbb{Z}^+$.  \\
-     Using equation (3) from page 46, we get $ \sum_{a \in S}\pi(a)\bP^m(a,b)=\pi (b)$ for every $m>0,a,b \in S$. We know $\pi(x)>0$ by assumption and $\bP^n(x,y)> 0$ since $x\to y$. This means that $\pi(x)\bP^n(x,y)>0$ is positive. Since all other terms of the sum are nonnegative, this means that $\pi(y)>0$ is also positive. \qed
+    Assume that $\pi$ is a stationary distribution, that $x$ leads to $y$, and that $\pi(x)>0$.
+    The fact $x\to y$ means that $P^n(x,y)>0$ for some $n \in \mathbb{Z}^+$.  \\
+     Using equation (3) from page 46, we get $ \sum_{a \in S}\pi(a)\bP^m(a,b)=\pi (b)$ for every $m>0,b \in S$. We know $\pi(x)>0$ by assumption and $\bP^n(x,y)> 0$ since $x\to y$. This means that $\pi(x)\bP^n(x,y)>0$ is positive. Since all other terms of the sum are nonnegative, this means that $\pi(y)>0$ is also positive. \qed
 \item
     \begin{comment}
     Based on the discussion in section 1.7 we get $r_x=0$ and the following transition function:
