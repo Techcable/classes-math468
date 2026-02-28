@@ -173,7 +173,28 @@
         .3& .4 & .3\\
         .3& .4 & .3\\
         .3& .4 & .3
-    \end{bmatrix}\] 
+    \end{bmatrix}\]
+\item
+    For $N=4, N=5$ we get the following matrices:
+    \[ \bP_{N=4}=\begin{bmatrix}
+        0 & p & 0 & q \\
+        q & 0 & p & 0 \\
+        0 & q & 0 & p \\
+        p & 0 & q & 0
+    \end{bmatrix}, \; \bP_{N=5}=\begin{bmatrix}
+        0 & p & 0 & 0 & q \\
+        q & 0 & p & 0 & 0 \\
+        0 & q & 0 & p & 0 \\
+        0 & 0 & q & 0 & p \\
+        p & 0 & 0 & q & 0 
+    \end{bmatrix} \]
+    This has the equilibrium solution $\pi(x)=\frac{1}{N}$. This can be verified by observing that $\pi\bP=\pi$ regardless of $p+q=1$ and $N$. \\
+    \vspace{3mm}
+    Now all that remains is to determine whether the equilibrium is stable.
+    Computation with WolframAlpha and $p=.6$ leads me to believe the equilibrium is unstable for $N=4$ and stable for $N=5$. As a guess, I generalize this, and think the equilibrium will be stable when $N$ is odd and unstable when $N$ is even. \\
+    \vspace{3mm}
+    Now to justify why this is true: Fix $N>2$.
+    \todo{How to do this?}
 \end{enumerate}
 \end{center}
 \end{document}
