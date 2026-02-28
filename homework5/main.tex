@@ -167,7 +167,13 @@
   \draw (79.375bp,62.25bp) node {1};
 %
 \end{tikzpicture}
-    From the graph, it is clear that states $\{0,1,2,3\}$ are transient and that $\{4,5\}$ are recurrent. Therefore the equilibrium $\pi=\langle 0,0,0,0,0.5,0.5\rangle$ is stable.    
+    From the graph, it is clear that states $\{0,1,2,3\}$ are transient and that $\{4,5\}$ are recurrent. Therefore the equilibrium $\pi=\langle 0,0,0,0,0.5,0.5\rangle$ is stable.
+\item
+    We found the equilibrium distribution $\pi=\langle .3,.4.,3\rangle$ for $\bP$. Theorem 1.5 means that the equilibrium is stable. Hence, regardless of the initial distribution $v_0$, $\lim_{n \to \infty} v_0\bP^n=\pi$. By picking $v_0=\langle 1,0,0\rangle$ we get that the first row is $\pi$ and the same for each other row. It follows that    \[ \lim_{n\to \infty}\bP^n=\begin{bmatrix}
+        .3& .4 & .3\\
+        .3& .4 & .3\\
+        .3& .4 & .3
+    \end{bmatrix}\] 
 \end{enumerate}
 \end{center}
 \end{document}
