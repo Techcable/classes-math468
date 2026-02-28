@@ -201,10 +201,10 @@
     If $m=0$ and $N$ divides $n$ then $P^n(x,x)>0$. More generally, if $N$ divides $n-m$ than $P^{n+m}(x,x)>0$. In this case $qN=n-m$ than \\
     Alternatively, if we take $n>0$ steps forward and $m=n+1$ steps backwards, we also get $P^{n+m}(x,x)=P^{2n+1}(x,x)>0$. These are the only two cases where we can get $P^{n+m}(x,x)\ne 0$.  Now I can't figure out the number theory to fully characterize this set $I$ in general. \\
     However, in the particular case where $N$ is odd then we get that $P^N(x,x)>0$ and $P^{2}(x,x)>0$ so $\{N,2\}\subseteq I$. Since we know $2\nmid N$ (since $N$ is odd) and also $N\nmid 2$, then $d_x=\gcd I=1$ in this case. So when $N$ is odd, $d_x=1$ and the system is aperiodic. \\
-    I cannot prove this in full generality in the case where $N$ is even. However, for $N=4$ we get something like the following:
+    I claim that in the case where $N$ is even, the period is 2 and $\gcd I=2$. I cannot prove this in its full generality. However, for $N=4$ we get something like the following:
     \[ I=\{2,4,6,\dots\} \]
     In this case, $\gcd I=2$ (although I cannot prove it), so $d_x=2$ and the system is periodic. \\
-    Clearly if the system is periodic ($N$ is even), then $\pi$ is not a stable equilibrium. If the system is aperiodic than $\pi$ \textit{is} a stable equilibrium, which is justified by Theorem 7 in section 7.2.
+    Clearly if the system is periodic ($N$ is even), then $\pi$ is not a stable equilibrium. If the system is aperiodic, then $\pi$ \textit{is} a stable equilibrium, which is justified by Theorem 7 in section 7.2.
 \item
     This can be done by solving the following system of equations:
     \begin{align*}
