@@ -191,10 +191,20 @@
     This has the equilibrium solution $\pi(x)=\frac{1}{N}$. This can be verified by observing that $\pi\bP=\pi$ regardless of $p+q=1$ and $N$. \\
     \vspace{3mm}
     Now all that remains is to determine whether the equilibrium is stable.
-    Computation with WolframAlpha and $p=.6$ leads me to believe the equilibrium is unstable for $N=4$ and stable for $N=5$. As a guess, I generalize this, and think the equilibrium will be stable when $N$ is odd and unstable when $N$ is even. \\
+    Computation of high matrix powers with WolframAlpha and $p=.6$ leads me to believe the equilibrium is unstable for $N=4$ and stable for $N=5$. As a guess, I generalize this, and think the equilibrium will be stable when $N$ is odd and unstable when $N$ is even. \\
     \vspace{3mm}
     Now to justify why this is true: Fix $N>2$.
-    \todo{How to do this?}
+    Clearly for every state $m_y=\frac{1}{N}$. This also justifies why the equilibrium $\pi$ has a uniform distribution. Clearly all states are positive recurrent and the system is irreducible, regardless of $N$. It follows that regardless of the state $x$, the period $d_x$ is the same (as defined by $d_x=\gcd\{n:P^n(x,x)>0\}$). Let $I=\{n:P^n(x,x)>0\}$. 
+     Now I claim that $d_x=1$ if $N$ is odd and $d_x=2$ if $N$ is even. I use an argument similar to the one on page 75. Clearly $P^1(x,x)=0$ for every state $x$. \\
+     % After $N$ steps forward we get $P^N(x,x)>0$. In fact, we get $P^{kN}>0$ for every $k\ge 1$. We can also take $m\ne N$ steps forward and $m+1$ steps backward to get $P^{m+1} steps for backward we get $$.
+    In the general case, assume that we take $n$ steps forward and $m$ steps backwards starting from state $x$.\\
+    If $m=0$ and $N$ divides $n$ then $P^n(x,x)>0$. More generally, if $N$ divides $n-m$ than $P^{n+m}(x,x)>0$. In this case $qN=n-m$ than \\
+    Alternatively, if we take $n>0$ steps forward and $m=n+1$ steps backwards, we also get $P^{n+m}(x,x)=P^{2n+1}(x,x)>0$. These are the only two cases where we can get $P^{n+m}(x,x)\ne 0$.  Now I can't figure out the number theory to fully characterize this set $I$ in general. \\
+    However, in the particular case where $N$ is odd then we get that $P^N(x,x)>0$ and $P^{2}(x,x)>0$ so $\{N,2\}\subseteq I$. Since we know $2\nmid N$ (since $N$ is odd) and also $N\nmid 2$, then $d_x=\gcd I=1$ in this case. So when $N$ is odd, $d_x=1$ and the system is aperiodic. \\
+    I cannot prove this in full generality in the case where $N$ is even. However, for $N=4$ we get something like the following:
+    \[ I=\{2,4,6,\dots\} \]
+    In this case, $\gcd I=2$ (although I cannot prove it), so $d_x=2$ and the system is periodic. \\
+    Clearly if the system is periodic ($N$ is even), then $\pi$ is not a stable equilibrium. If the system is aperiodic than $\pi$ \textit{is} a stable equilibrium, which is justified by Theorem 7 in section 7.2.
 \end{enumerate}
 \end{center}
 \end{document}
