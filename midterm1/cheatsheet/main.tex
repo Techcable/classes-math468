@@ -98,7 +98,22 @@ On other hand, if $y$ is recurrent and starts at $y$ than the chain visits $y$ a
 \nsubsection{Equilibrium}{
 The equilibrium vanishes on transient states. \\
 \textbf{Thm 2.3}: Let $N_n(y)$ be the number of visits to $y$ in time $1\le t \le n$, then $\lim_{n\to\infty} \frac{N_N(y)}{n}=\frac{I_{\{T_y<\infty\}}}{m_y}$ with probability one, where $I$ is the indicator function. \\
-\textbf{Thm 2.4}: (a) An equilibrium $\pi$ vanishes on all transient and null recurrent states. (b) A positive recurrent communication class supports a unique equilibrium $\pi(y)=\frac{1}{m_y}$ for $m_y$ finite.
+\textbf{Thm 2.4}: (a) An equilibrium $\pi$ vanishes on all transient and null recurrent states. (b) A positive recurrent communication class supports a unique equilibrium $\pi(y)=\frac{1}{m_y}$ for $m_y$ finite. (c) Finite closed communication class is automatically positive recurrent
+}
+\nsubsection{Stability of Equilibrum}{
+Define the period as $d_x=gcd\{n:\bP^n(x,x)>0\}$. \\
+Periods are the same for nodes that communicate. \\
+\textbf{Thm 2.5:} If $C$ is a positive recurrent class and $\pi$ is the unique equilibrium supported on $C$.
+(a) If $C$ is aperiodic, then $\pi$ is a stable equilbirum \\
+The Peron-Frobenus thm says real square matrix with positive entries there is a unique eigenvalue of positive magnitude, that eigenvalue is real, has multiplity one, and the eigenvector can be chosen to have nonnegative entries. \\
+\textbf{Them 2.6}: If a chain is finite, irreducible (hence positive recurrent) and for some power $m$, all entreis $P^m$ are nonzero, then the chain is aperiodic and the unique equilibrum ist stable.
+}
+\nsubsection{Misceleaneous}{Note that the formula $\pi(y)=\frac{1}{y}$ for finite states works both ways, if you know the equilbirum then you know the expected return times. \\
+The following may be useful:
+\[ E_X(N(y))=\sum_{n=1}^\infty \bP^n(x,y) \]
+There is another thm stating that if $y$ is transient then the chain visits any other state $y$ a finite number of times and $E_x(N(y))=\frac{\rho_{xy}}{1-\rho_{yy}}$ \\
+The following is useful:
+\[\bP^n(x,y) =\sum_{m=1}^n P_x(T_y=m)\bP^{n-m}(y,y) \]
 }
 % End the cheat sheet
 \endcheatsheet
