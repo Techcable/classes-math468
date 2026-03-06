@@ -1,0 +1,82 @@
+% Linear Algebra Reference Sheet
+\documentclass{article}
+
+% Load the cheatsheet package and necessary math packages
+\usepackage{cheatsheet}
+\usepackage{amsmath,amsfonts,amssymb,bm}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+% Custom macros for mathematical notation
+\newcommand{\vb}[1]{\mathbf{#1}} % Vector (bold)
+\newcommand{\mt}[1]{\mathit{#1}} % Matrix (italic)
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\vn}[1]{\left\|#1\right\|} % Magnitude/Norm
+\newcommand{\vs}[1]{\mathcal{#1}} % Vector space
+\newcommand{\proj}[2]{\text{Proj}_{#1}(#2)} % Projection of #2 onto #1
+\DeclareMathOperator{\tr}{tr} % Trace operator
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+
+% Customize cheatsheet parameters
+\setcheatsheetcolumns{3}
+\setcheatsheetfontsize{6.75}  % Larger font size for readability
+\setcheatsheetmargin{0.1in}
+\setcheatsheetdensity{0.05}
+% \hidecheatsheetheader      % No header needed
+
+\renewcommand{\studentname}{Nicholas Schlabach}
+\renewcommand{\classname}{Math 468, Stochastic Processes}
+\renewcommand{\sheetdate}{March 4th, 2026}
+
+\begin{document}
+
+% Begin the cheat sheet
+\begincheatsheet
+
+% Probability Review taken from the 466 cheatsheet
+\nsection{Probability Review}
+\nsubsection{Basics}{
+\begin{itemize}
+    \item If $g$ is increasing and $Y=g(X)$, then $F_Y(y)=F_X(g^{-1}(y))$ and $f_Y(y)=f_X(g^{-1}(y))\cdot (g^{-1})'(y)$.
+    \item $V[X]=E[X^2]-E[X]^2=E\big[(X-E[X])^2\big]$
+    \item \textit{Def}: $Cov(X,Y)=E[XY]-E[X]E[Y]$. It follows that $V[X\pm Y]=V[X]+V[Y]\pm 2\text{Cov}(X,Y)$.
+    \item $V[aX-b]=a^2V[X]$
+    \item LOTUS: $E[g(X)]=\int_{-\infty}^\infty g(x)f_X(x)dx$
+    \item \textit{Def}: $F_X(x)=P(X \le x), \; F_{X,Y}(x,y)=P(X\le x, Y \le y) \implies \frac{\partial^2}{\partial x \partial y}F_{X,Y}(x,y)=f_{X,Y}(x,y)$
+    \item Conditional density is $f_{Y|X}(y|x)=\frac{f_{X,Y}(x,y)}{f_X(x)}$.
+\end{itemize}
+}
+\nsubsection{Moment Generating Functions}{
+\begin{itemize}
+    \item \textit{Def}: $M_X(t)=E[e^{tX}] \implies E[X^n]=M^{(n)}_X(0)$
+\end{itemize}
+}
+\nsubsection{Conditional Probability \& Independence}{
+\begin{itemize}
+    \item \textit{Def}: Events are independent if $P(A\cap B)=P(A)P(B)$. RVs are independent if the PDF/PMF factors.
+    \item $P(A|B)=P(A \cap B)/P(B)$
+    \item Law of Total Probability: If $B_j$ is a partition of $\Omega$ then $P(A)=\sum P(A|B_j)P(B_j)$
+    \item If $A,B$ are independent all of the following occur:
+        \begin{itemize}
+        \item $E[AB]=E[A]E[B], \; Cov(A,B)=0$, 
+        \item $g(A),g(B)$ are independent regardless of $g,f: \mathbb{R} \to \mathbb{R}$
+        \item $M_{X+Y}=M_X(t)M_Y(t)$ (Ch 7, Thm. 6)
+        \end{itemize}
+\end{itemize}
+}
+
+\nsection{Chapter 2}
+\nsubsection{Definitions}{
+A random (or stochastic process) is a family of random variables on $X_t$ so that $X_t: \Omega\to S$ is a function on a probability space $\Omega$. For midterm 1, time and $S$ are both discrete. \\
+We say that $X$ is a \textit{Markov chain} if $P(X_{n+1}=x_{n+1}|X_0=x_0,X_1=x_1,\dots,X_n=x_n)=P(X_{n+1}=x_{n+1}|X_n=x_n)$. We also assume that a Markov chain is homogenous, meaning that the transition probability is also independent of time $n$. \\
+\todo{The following need precise definitions}
+\begin{itemize}
+    \item $T_y$ denotes the hitting time (\todo{Find def})
+    \item $N(y)$ is the number of hits
+    \item $N_n(y)$ is the number of hits up to time $n$
+\end{itemize}
+}
+% End the cheat sheet
+\endcheatsheet
+\end{document}
