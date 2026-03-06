@@ -17,6 +17,7 @@
 \DeclareMathOperator{\tr}{tr} % Trace operator
 
 \newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+\newcommand*{\bP}{\mathbf{P}}
 
 % Customize cheatsheet parameters
 \setcheatsheetcolumns{3}
@@ -70,12 +71,29 @@
 \nsubsection{Definitions}{
 A random (or stochastic process) is a family of random variables on $X_t$ so that $X_t: \Omega\to S$ is a function on a probability space $\Omega$. For midterm 1, time and $S$ are both discrete. \\
 We say that $X$ is a \textit{Markov chain} if $P(X_{n+1}=x_{n+1}|X_0=x_0,X_1=x_1,\dots,X_n=x_n)=P(X_{n+1}=x_{n+1}|X_n=x_n)$. We also assume that a Markov chain is homogenous, meaning that the transition probability is also independent of time $n$. \\
-\todo{The following need precise definitions}
+To be a probability matrix, columns must sum to one and entries need to be nonnegative. \\
 \begin{itemize}
-    \item $T_y$ denotes the hitting time (\todo{Find def})
-    \item $N(y)$ is the number of hits
+    \item $T_A=\min\{n{>}0:X_n\in A\}$ is  a RV called "hitting time"
+    \item $N(y)=\#\{X_i=y:i\in \mathbb{Z}^+\}$ is the RV number of hits
     \item $N_n(y)$ is the number of hits up to time $n$
+    \item $\rho_{xy}:=P_x(T_y<\infty)$ is probability $x$ reaches $y$
+    \item $x \in S$ is an absorbing state if $\bP(x,x)=1$
+    \item $y \in S$ is recurrent if $P_y(T_y<\infty)$, is transient otherwise
+    \item $x$ leads to $y$ ($x \to y$) means $\rho_{xy}>0$
+    \item $x$ and $y$ communicate  $(x\leftrightarrow y$) means $x\to y$ and $y\to x$
+    \item A set $C\subseteq S$ of the form $\{y:y\leftrightarrow x\}$ for some fixed $x$ is called a communication class
+    \item A Markov chain is irreducible if $S$ is a single communication class
+    \item A set $C \subseteq S$ is closed if $\forall x \in C,x\to y \implies y\in C$
+    \item An equilibrium distribution $\pi$ satisfies $\pi\bP=\pi$
+    \item This equilibrium is stable iff $\lim_{n \to \infty}\bP^n(x,y)=\pi(y)$ for every $x,y \in S$. Equivalently, for every initial distribution $\pi_0$, $\pi_0\bP^n\to \pi$.
+    \item $m_y:=E_y(T_y)$ is the expected return time. A recurrent state is called null-recurrent if  $m_y=\infty$ and positive recurrent otherwise
 \end{itemize}
+}
+\nsubsection{Basic Properties}{
+\textbf{Thm 2.1}: If $y$ is a transient state $(\rho_yy<1)$, then no matter where the chain starts the chain visits $y$ a finite number of times and the expected number of visits is finite. For any state $x$, $P_x(N(y)<\infty)=1$ and $E_x(N(y))=\sum_{n=1}^\infty \bP^n(x,y)<\infty$. \\
+On other hand, if $y$ is recurrent and starts at $y$ than the chain visits $y$ an  infinite number of times $P_y(N(y)=\infty)=1$ and $E_y(N(y))=\infty$. More generally $P_x(N(y)=\infty)=\rho_{xy}$, $E_x(N(y))=0$ if $\rho_{xy}=0$ and $E_x(N(y))=\infty$ if $\rho_{xy}>0$
+\textbf{Corollary 1}: A state $x$ is transient iff $E_X(N(x))<\infty$ \\
+\textbf{Thm 2.2}: (a) If $x \in S$ is recurrent and $x\to y$, then $Y$ is recurrent, $\rho_{xy}=\rho_{yx}=1$ and $y \to x$. Hence, recurrence is shared across communication classes. (b) The same is true for null recurrent and positive recurrent states. (c) If $S$ is finite, then there is at least one recurrent state and recurrent states are positive recurrent. (d) The set of recurrent states $S_R$ is the disjoint union of communication classes.
 }
 % End the cheat sheet
 \endcheatsheet
