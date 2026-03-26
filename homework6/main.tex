@@ -1,0 +1,134 @@
+\documentclass[14pt,letterpaper]{extarticle}
+\usepackage[utf8]{inputenc}
+
+% Set margins
+% https://tex.stackexchange.com/a/327136
+% this should replace use of the 'fullpage' package
+\usepackage[
+    includehead,
+    margin=2.5cm,
+    bmargin=2cm,
+]{geometry}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim} % This works better than comment for some reason
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{xfrac} % Fractions - https://tex.stackexchange.com/a/230973
+\usepackage{xcolor}
+
+% The magic latex drawing thing
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage[en-US,showdow]{datetime2}
+
+% Colored hyperlinks:
+% https://www.overleaf.com/learn/latex/Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+
+% Setup nice headings
+% https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage{fancyhdr}
+\usepackage{titling} % Save title for use in fancyhdr
+
+% Shortcuts
+\newcommand*{\bP}{\mathbf{P}}
+\newcommand*{\bq}{\mathbf{q}}
+
+
+% Use black tombstone for QED
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Important sets
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\Z}{\mathbb{Z}}
+
+%
+% symbols
+%
+
+% name by meaning, not by character
+\newcommand{\grad}{\nabla}
+
+
+% New command for 'partial QED' using white tombstone
+\newcommand*{\partialqed}{$\hfill \square$ \\}
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+
+% Increased spaces spacing
+\usepackage{setspace} \onehalfspacing
+
+\title{Math 468 - Homework 6}
+\author{Nicholas Schlabach (nickninja@arizona.edu)}
+\DTMsavedate{titledate}{2026-03-24}
+\date{\DTMUsedate{titledate}}
+
+%% Copied from https://tex.stackexchange.com/a/2238
+%% Modified by Techcable 9/19/21 to use '[...]' instead of '(...)'
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead[L]{Nicholas Schlabach}
+\fancyhead[C]{\hspace{5mm}\Big(\thetitle{}\Big)}
+\fancyhead[R]{{\DTMsetdatestyle{mmddyy}\DTMusedate{titledate}}, Page \thepage}
+\fancyfoot{} % no footer
+\maketitle
+% maketitle automatically sets pagestyle=plain, override this
+\thispagestyle{fancy}
+
+
+\begin{center}
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item
+    \begin{enumerate}
+    \item
+        Observe that $\langle1,1\rangle$ is an eigenvector with eigenvalue $\lambda=0$.
+        Solving for $\det( \bq-\lambda I)=0$ gives characteristic polynomial $\lambda(\lambda_0+\mu_1+\lambda)=0$.
+        The eigenvector $\langle \lambda_0,-\mu_1\rangle$ is associated with eigenvalue $\lambda=-\lambda_0-\mu_1$.
+    \item
+        Diagonalizing using the eigenvectors gives 
+        \[ Q=\begin{bmatrix}
+            1 & \lambda_0 \\
+            1 & -\mu_1
+        \end{bmatrix}, \; Q^{-1}\bq
+            Q=\begin{bmatrix}
+            0 & 0 \\
+            0 & -\lambda_0-\mu_1
+        \end{bmatrix}=\boldsymbol{\lambda}, Q^{-1}=\frac{1}{\lambda+\mu}\begin{bmatrix}
+                \mu & \lambda \\
+                1 & -1
+        \end{bmatrix} \]
+        \item The Wikipedia page for matrix exponential says that if $Y$ is invertible, then $e^{YXY{-1}}=Ye^XY^{-1}$. Along with the fact that $t\bq$ is diagonalizable whenever $\bq$ is we get
+        \[ \bP(t)=e^{t\bq}=Qe^{t\boldsymbol{\lambda}}Q^{-1}=Q\begin{bmatrix}
+            1 & 0 \\
+            0 & e^{t(-\lambda_0-\mu_1)}       \end{bmatrix}Q^{-1} \]
+        Multiplying these matrices gives the final result
+        \[ \bP(t)=e^{t\bq}=\frac{1}{\lambda_0+\mu_1}\begin{bmatrix}
+                \lambda_0e^{-t(\lambda_0+\mu_1)}+\mu_1 & \lambda_0\big(1-e^{-t(\lambda_0+\mu_1)}\big) \\
+                \mu_1\big(1-e^{-t(\lambda_0+\mu_1)}\big) & \mu_1 e^{-t(\lambda_0+\mu_1)}+\lambda_0
+            \end{bmatrix} \]
+        \item
+            Using the fact that $\lambda_0,\mu_1>0$ and $\forall k>0,\lim_{t \to \infty}e^{-tk}=0$ we get
+            \[ \lim_{t \to \infty} \bP(t)=\frac{1}{\lambda_0+\mu_1}\begin{bmatrix}
+                \mu_1 & \lambda_0 \\
+                \mu_1 & \lambda_0
+            \end{bmatrix}\]
+    \end{enumerate}
+\end{enumerate}
+\end{center}
+\end{document}
