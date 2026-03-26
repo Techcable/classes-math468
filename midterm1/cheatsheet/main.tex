@@ -60,7 +60,7 @@
     \item Law of Total Probability: If $B_j$ is a partition of $\Omega$ then $P(A)=\sum P(A|B_j)P(B_j)$
     \item If $A,B$ are independent all of the following occur:
         \begin{itemize}
-        \item $E[AB]=E[A]E[B], \; Cov(A,B)=0$, 
+        \item $E[AB]=E[A]E[B], \; Cov(A,B)=0$,
         \item $g(A),g(B)$ are independent regardless of $g,f: \mathbb{R} \to \mathbb{R}$
         \item $M_{X+Y}=M_X(t)M_Y(t)$ (Ch 7, Thm. 6)
         \end{itemize}
@@ -71,7 +71,7 @@
 \nsubsection{Definitions}{
 A random (or stochastic process) is a family of random variables on $X_t$ so that $X_t: \Omega\to S$ is a function on a probability space $\Omega$. For midterm 1, time and $S$ are both discrete. \\
 We say that $X$ is a \textit{Markov chain} if $P(X_{n+1}=x_{n+1}|X_0=x_0,X_1=x_1,\dots,X_n=x_n)=P(X_{n+1}=x_{n+1}|X_n=x_n)$. We also assume that a Markov chain is homogenous, meaning that the transition probability is also independent of time $n$. \\
-To be a probability matrix, columns must sum to one and entries need to be nonnegative. \\
+To be a probability matrix, \textit{rows} must sum to one and entries need to be nonnegative. \\
 \begin{itemize}
     \item $T_A=\min\{n{>}0:X_n\in A\}$ is  a RV called "hitting time"
     \item $N(y)=\#\{X_i=y:i\in \mathbb{Z}^+\}$ is the RV number of hits
