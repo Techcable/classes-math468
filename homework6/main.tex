@@ -93,9 +93,58 @@
 
 \begin{center}
 \begin{enumerate}
-\setcounter{enumi}{1}
 \item
     \begin{enumerate}
+        \item 
+            The CDF $P(X\le k)$ of the geometric RV can be computed using the partial sum of  a geometric series:
+            \[ P(X\le k)=\sum_{i=0}^k pq^{k-1}=\frac{p(1-q^{k+1})}{1-q}=1-q^{k+1} \] 
+            Using the def. of conditional probability and the fact $X>n+m \implies X>m$ we get
+            \begin{align*} 
+                & P(X>n+m|X>m)\\
+                = & \frac{P(X>n+m,X>m)}{P(X>m)} \\
+                = & \frac{P(X>n+m)}{P(X>m)} \\
+                = & \frac{1-P(X\le n+m)}{1-P(X\le m)} \\
+                = & \frac{q^{n+m}}{q^m} \\
+                = & q^n \\
+                = & 1-P(X\le n) \\
+                = & P(X>n)
+            \end{align*}
+            This proves that $X \sim \text{Geom}$ has the desired property. \qed
+            \\ 
+            Now assume that $Y$ is an exponential random variable with PDF $f_Y(x)=\lambda e^{-\lambda x}$. 
+            The CDF of $Y$ is $P(Y\le x)=F_Y(x)=\int_0^xf_Y(t)dt=-1-e^{-\lambda x}$. Once more, using the def of conditional probability and $Y>n+m\implies Y>m$ we get
+            \begin{align*}
+                & P(Y>n+m|Y>m)\\
+                = & \frac{P(Y>n+m,X>m)}{P(Y>m)} \\
+                = & \frac{P(Y>n+m)}{P(Y>m)} \\
+                = & \frac{1-P(Y\le n+m)}{1-P(Y\le m)} \\
+                = & \frac{1-P(Y\le n+m)}{1-P(Y\le m)}  \\
+                = & \frac{e^{-\lambda (n+m)}}{e^{-\lambda m}} \\
+                = & e^{-\lambda n} \\
+                = & 1-P(Y\le n)  \\
+                = & P(Y>n)
+            \end{align*}
+            This proves the desired property for $Y\sim \text{Exp }\lambda$. \qed
+    \item
+        First, assume that $P(X>n+m|X>m)=P(X>n)$ and that $X$ has the CDF $F_X$ (may be discrete or conditional). Rewriting using the def. of conditional probability and $X>n+m\implies Y>m$ we get
+            \begin{align*}
+                & P(Y>n+m|Y>m)\\
+                = & \frac{P(Y>n+m,X>m)}{P(Y>m)} \\
+                = & \frac{P(Y>n+m)}{P(Y>m)} \\
+                = & \frac{1-P(Y\le n+m)}{1-P(Y\le m)} \\
+                = & \frac{1-P(Y\le n+m)}{1-P(Y\le m)}  \\
+                = & \frac{1-F_X(n+m)}{1-F_X(m))} \\
+                = & P(Y>n) \\
+                = & 1-F_X(n)
+            \end{align*}
+            Doing a change of variable $H(x)=1-F(x)$ we get $H(n)H(m)=H(n+m)$. The functional equation gives us $H(x)=ae^{-xb}$ for some $a \ge 0$. \\ 
+            \vspace{3mm}
+            First solution for $H$: Assuming that we desire a continuous-valued probability distribution, setting $a=1$ and $b=\lambda$ gives us $X$ with an exponential distribution for some unknown $\lambda>0$. \\
+            \vspace{3mm}
+            Second solution for $H$: Assuming we want a discrete probability distribution, setting $a=(1-q), b=\ln q$ for some $0<q<1$ gives us $F_X(k)=1-(1-q)q^k$ which is the CDF of the geometic sequence. \\
+            \vspace{3mm}
+            I cannot prove these are the only meaningful solutions. There may be others. However, I would point out that in the first  solution, $a$ is fixed, while in the other solution, $a$ varies. 
+        \begin{enumerate}
     \item
         Observe that $\langle1,1\rangle$ is an eigenvector with eigenvalue $\lambda=0$.
         Solving for $\det( \bq-\lambda I)=0$ gives characteristic polynomial $\lambda(\lambda_0+\mu_1+\lambda)=0$.
