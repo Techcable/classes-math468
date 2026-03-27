@@ -6,6 +6,7 @@ Things I need to figure out for this class.
 ### Homework 2
 - Need to understand difference between "waiting time" and "hitting time"
   - Need to define "waiting time" on the midterm notesheet.
+- Include Bayes rule on the sheet? It follows quickly from def. of conditional probability
 
 ## Midterm Notesheat
 
