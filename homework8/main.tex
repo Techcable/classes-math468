@@ -1,0 +1,127 @@
+\documentclass[14pt,letterpaper]{extarticle}
+\usepackage[utf8]{inputenc}
+
+% Set margins
+% https://tex.stackexchange.com/a/327136
+% this should replace use of the 'fullpage' package
+\usepackage[
+    includehead,
+    margin=2.5cm,
+    bmargin=2cm,
+]{geometry}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim} % This works better than comment for some reason
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{xfrac} % Fractions - https://tex.stackexchange.com/a/230973
+\usepackage{xcolor}
+
+% The magic latex drawing thing
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage[en-US,showdow]{datetime2}
+
+% Colored hyperlinks:
+% https://www.overleaf.com/learn/latex/Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+
+% Setup nice headings
+% https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage{fancyhdr}
+\usepackage{titling} % Save title for use in fancyhdr
+
+% Shortcuts
+\newcommand*{\bP}{\mathbf{P}}
+\newcommand*{\bq}{\mathbf{q}}
+
+\newcommand*{\Cov}{\operatorname{Cov}}
+
+
+
+% Use black tombstone for QED
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Important sets
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\Z}{\mathbb{Z}}
+
+%
+% symbols
+%
+
+% name by meaning, not by character
+\newcommand{\grad}{\nabla}
+
+
+% New command for 'partial QED' using white tombstone
+\newcommand*{\partialqed}{$\hfill \square$ \\}
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+
+% Increased spaces spacing
+\usepackage{setspace} \onehalfspacing
+
+\title{Math 468 - Homework 8}
+\author{Nicholas Schlabach (nickninja@arizona.edu)}
+\DTMsavedate{titledate}{2026-04-09}
+\date{\DTMUsedate{titledate}}
+
+%% Copied from https://tex.stackexchange.com/a/2238
+%% Modified by Techcable 9/19/21 to use '[...]' instead of '(...)'
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead[L]{Nicholas Schlabach}
+\fancyhead[C]{\hspace{5mm}\Big(\thetitle{}\Big)}
+\fancyhead[R]{{\DTMsetdatestyle{mmddyy}\DTMusedate{titledate}}, Page \thepage}
+\fancyfoot{} % no footer
+\maketitle
+% maketitle automatically sets pagestyle=plain, override this
+\thispagestyle{fancy}
+
+
+\begin{center}
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item
+    \begin{enumerate}
+    \item $P(W(0)=2)=0$ as $W$ is a cont. RV
+    \item $P(W(1)=2,W(3)=3)=0$ as $W$ is a cont. RV
+    \item 
+        %We know that $W(0)=0$ from property (i), it follows from property (iii) that $W(t)=W(t)-W(0)\sim N(0,\sigma^2t)$. Since we are given $\sigma^2=1$ we get $W(1)\sim N(0,2)
+        Since $W(t)=0$ is constant, we get $P(0<W(t)<2)=0$.
+    \end{enumerate}
+    \item
+        Assume that $t>s$
+        By properties of the Poisson process, we know $X(0)=0$, $X(t)= X(t)-X(0)\sim Pos_{t\lambda}$. By linearity, we get $E[Y(t)]=E[X(t)]-E[tX(1))]$.
+        We know that $X(t)\sim Pos_{t\lambda}$ so $E[X(T)]=t\lambda$. By the law of the unconscious statistician:.
+        \[ E[tX(t)]=\sum_{k=0}^\infty tkP(t=k)=t\big(\sum_{k=0}^\infty kP(t=k)\big)=tE[X(t)] \]
+        \todo{This follows from the fact $t$ is fixed} \\
+        I wasn't certain that we could apply linearity of expectation, but it looks like we can. It follows that $\mu_Y(t)=E[Y(t)]=t\lambda-t\lambda^2$ is the mean function for $Y(t)$. \\
+        Covariance is $r_X(s,t)=\Cov(s,t)=E\big[(X(s)-\mu_X(s))(X(t)-\mu_X(t))\big]$. 
+        However, we know that $V(X+Y)=V(X)+V(Y)+2\Cov(X,Y)$ and $V(-X)=V(-X)$. I claim that $\Cov(X,-Y)=-\Cov(X,Y)$. By definition of $\Cov$ and using        \[ Cov(X,-Y)=E[(X-E[X])(-1)(Y-E[Y])] \]
+        Linearity of expectation allows us to factor out the $-1$, giving the desired identity $\Cov(X,-Y)=-\Cov(X,Y)$. \\
+        Hence $V(X-Y)=V(X)+V(Y)+-2\Cov(X,Y)$ and then $\Cov(X,Y)=1/2\big(V[X]+V[Y]-V[X-Y]\big)$.
+        In our case we get:
+        \[ \Cov(X(t),X(s))=1/2\Big(V[X(t)]+V[X(s)]-V[X(t)-X(s)]\Big) \]
+        Since $X(t)\sim Pos_{t\lambda},X(s)-X(t)\sim Pos_{(t\lambda}$, we know that $V[X(t)]=t\lambda$ and $V[X(s)-X(t)]=\lambda(s-t)$. Substituting gives
+        \[ \Cov(X(t),X(s))=\frac{\lambda}{2}(t+s-(t-s))=\lambda s \]
+        This means that $r_X(t,s)=\lambda s$. \\The symmetry in the answer is somewhat surprising, but Dr. Pickrell says it's fine and comes from our assumption $t>s$.
+    
+\end{enumerate}
+\end{center}
+\end{document}
