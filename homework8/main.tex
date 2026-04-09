@@ -107,11 +107,9 @@
     \end{enumerate}
     \item
         Assume that $t>s$
-        By properties of the Poisson process, we know $X(0)=0$, $X(t)= X(t)-X(0)\sim Pos_{t\lambda}$. By linearity, we get $E[Y(t)]=E[X(t)]-E[tX(1))]$.
-        We know that $X(t)\sim Pos_{t\lambda}$ so $E[X(T)]=t\lambda$. By the law of the unconscious statistician:.
-        \[ E[tX(t)]=\sum_{k=0}^\infty tkP(t=k)=t\big(\sum_{k=0}^\infty kP(t=k)\big)=tE[X(t)] \]
-        \todo{This follows from the fact $t$ is fixed} \\
-        I wasn't certain that we could apply linearity of expectation, but it looks like we can. It follows that $\mu_Y(t)=E[Y(t)]=t\lambda-t\lambda^2$ is the mean function for $Y(t)$. \\
+        By properties of the Poisson process, we know $X(0)=0$, $X(t)= X(t)-X(0)\sim Pos_{t\lambda}$. By linearity, we get $E[Y(t)]=E[X(t)]-tE[X(1))]$.
+        We know that $X(t)\sim Pos_{t\lambda}$ so $E[X(T)]=t\lambda$ and $E[tX(t)]=t^2\lambda$.
+        It follows that $\mu_Y(t)=E[Y(t)]=t\lambda-t^2\lambda$ is the mean function for $Y(t)$. \\
         Covariance is $r_X(s,t)=\Cov(s,t)=E\big[(X(s)-\mu_X(s))(X(t)-\mu_X(t))\big]$. 
         However, we know that $V(X+Y)=V(X)+V(Y)+2\Cov(X,Y)$ and $V(-X)=V(-X)$. I claim that $\Cov(X,-Y)=-\Cov(X,Y)$. By definition of $\Cov$ and using        \[ Cov(X,-Y)=E[(X-E[X])(-1)(Y-E[Y])] \]
         Linearity of expectation allows us to factor out the $-1$, giving the desired identity $\Cov(X,-Y)=-\Cov(X,Y)$. \\
