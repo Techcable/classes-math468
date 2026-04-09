@@ -131,6 +131,15 @@
     \[ W(1)+\dots+W(n)=W(1)+\big(W(2)-W(1)\big)+\dots+\big(W(n)-W(n-1)\big) \]
     By properties of Wiener processes, $W(1),W(2)-W(1),\dots,W(n)-W(n-1)$ are all independent and each have dist. $N(0,\sigma^2(k-(k-1))\sim N(0,\sigma^2)$. It follows from the properties of the normal dist. that 
     \[ W(1)+W(2)+\dots+W(n)\sim N(0,n\sigma^2) \]
+\item
+    \begin{enumerate}
+    \setcounter{enumii}{1}
+    \item
+        Since $\forall s\ge 0,E[W(s)]=0$, then $E[tW(1/t)]=tE[W(1/t)]=0$.
+        By def. of $r_W=\Cov$ and using the fact $E[tW(t)]=0$ we  have 
+        \[ r_X(t,s)=E\Big[\big(tW(1/t)\big)\big(sW(1/s)\big)\Big]=tsE[W(1/t)W(1/s)]\]
+        Now $E[W(1/t)W(1/s)]
+    \end{enumerate}
 \end{enumerate}
 \end{center}
 \end{document}
