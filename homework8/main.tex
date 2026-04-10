@@ -126,6 +126,11 @@
     Now $W(t)\sim N(0,\sigma^2t)$ and $W(t)-W(s)\sim N(0,\sigma^2(t-s))$ so we get 
     \[ \Cov(W(t),W(s))=\frac{1}{2}(\sigma^2 t+\sigma^2 s-\sigma^2(t-s))=\sigma^2s \]
     However, if we assume $s>t$, then we need to use $V[W(s)-W(t)]$ instead of $V[W(t)-W(s)]$. This gives us $\Cov(W(t),W(s))=\sigma^2t$. So the smaller value $\min\{s,t\}$ is chosen, giving the desired result for $r_W(s,t)$.
+\item
+    As discussed in class, we can rewrite this as a telescoping sum: 
+    \[ W(1)+\dots+W(n)=W(1)+\big(W(2)-W(1)\big)+\dots+\big(W(n)-W(n-1)\big) \]
+    By properties of Wiener processes, $W(1),W(2)-W(1),\dots,W(n)-W(n-1)$ are all independent and each have dist. $N(0,\sigma^2(k-(k-1))\sim N(0,\sigma^2)$. It follows from the properties of the normal dist. that 
+    \[ W(1)+W(2)+\dots+W(n)\sim N(0,n\sigma^2) \]
 \end{enumerate}
 \end{center}
 \end{document}
