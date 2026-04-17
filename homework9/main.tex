@@ -1,0 +1,113 @@
+\documentclass[14pt,letterpaper]{extarticle}
+\usepackage[utf8]{inputenc}
+
+% Set margins
+% https://tex.stackexchange.com/a/327136
+% this should replace use of the 'fullpage' package
+\usepackage[
+    includehead,
+    margin=2.5cm,
+    bmargin=2cm,
+]{geometry}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim} % This works better than comment for some reason
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{xfrac} % Fractions - https://tex.stackexchange.com/a/230973
+\usepackage{xcolor}
+
+% The magic latex drawing thing
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage[en-US,showdow]{datetime2}
+
+% Colored hyperlinks:
+% https://www.overleaf.com/learn/latex/Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+
+% Setup nice headings
+% https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage{fancyhdr}
+\usepackage{titling} % Save title for use in fancyhdr
+
+% Shortcuts
+\newcommand*{\bP}{\mathbf{P}}
+\newcommand*{\bq}{\mathbf{q}}
+
+\newcommand*{\Cov}{\operatorname{Cov}}
+
+
+
+% Use black tombstone for QED
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Important sets
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\Z}{\mathbb{Z}}
+
+%
+% symbols
+%
+
+% name by meaning, not by character
+\newcommand{\grad}{\nabla}
+
+
+% New command for 'partial QED' using white tombstone
+\newcommand*{\partialqed}{$\hfill \square$ \\}
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+
+% Increased spaces spacing
+\usepackage{setspace} \onehalfspacing
+
+\title{Math 468 - Homework 9}
+\author{Nicholas Schlabach (nickninja@arizona.edu)}
+\DTMsavedate{titledate}{2026-04-15}
+\date{\DTMUsedate{titledate}}
+
+%% Copied from https://tex.stackexchange.com/a/2238
+%% Modified by Techcable 9/19/21 to use '[...]' instead of '(...)'
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead[L]{Nicholas Schlabach}
+\fancyhead[C]{\hspace{5mm}\Big(\thetitle{}\Big)}
+\fancyhead[R]{{\DTMsetdatestyle{mmddyy}\DTMusedate{titledate}}, Page \thepage}
+\fancyfoot{} % no footer
+\maketitle
+% maketitle automatically sets pagestyle=plain, override this
+\thispagestyle{fancy}
+
+
+\begin{center}
+\begin{enumerate}
+\item
+    I am going to assume that linearity of expectation applies to integrals in addition to finite sums.
+    \[ E[X(t)]=\int_0^tE\big[W(s)\big]ds=\int_0^t0ds=0 \]
+    Because the mean of $X$ is always zero, covariance becomes a simple product:  
+    \[ \Cov(X(t),X(s))=E\big[X(t)X(s)\big]=E\Big[\Big(\int_0^t W(s)ds\Big)\Big(\int_0^sW(u)du\Big)\Big] \]
+    We can turn this product into a double integral, then distribute the $E$:
+    \[ \Cov(X(t),X(s))=\int_0^t\int_0^sE\Big[W(x)W(u)\Big]dxdu \]
+    % Fubini's Theorem
+    But because Brownian motion $W$ has mean zero, that inner expression is actually the covariance of Brownian motion $r_W$. We already know that $r_W(s,t)=\sigma^2\min\{s,t\}$ for $s,t>0$. This can then be split up into triangles to evaluate $\min$. For the region $s\le t$ we have $x \in [0,t], y \in [0,x]$ and $x \in [0,s], y \in [0,x]$. This gives us
+    \[ \Cov(X(t),S(t))=\int_0^t\int_0^x\sigma^2 tdydx+\int_0^s\int_0^x\sigma^2 sdydx\]
+    Evaluating these integrals gives the final result:
+    \[ r_X(s,t)=\Cov(X(t),S(t))=\int_0^t\sigma^2txdx+\int_0^s\sigma^2sxdx=\frac{\sigma^2}{2}\Big(t^3+s^3\Big) \]
+\end{enumerate}
+\end{center}
+\end{document}
