@@ -1,0 +1,119 @@
+\documentclass{article}
+
+% Load the cheatsheet package and necessary math packages
+\usepackage{cheatsheet}
+\usepackage{amsmath,amsfonts,amssymb,bm}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+% Custom macros for mathematical notation
+\newcommand{\vb}[1]{\mathbf{#1}} % Vector (bold)
+\newcommand{\mt}[1]{\mathit{#1}} % Matrix (italic)
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\vn}[1]{\left\|#1\right\|} % Magnitude/Norm
+\newcommand{\vs}[1]{\mathcal{#1}} % Vector space
+\newcommand{\proj}[2]{\text{Proj}_{#1}(#2)} % Projection of #2 onto #1
+\DeclareMathOperator{\tr}{tr} % Trace operator
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+\newcommand*{\bP}{\mathbf{P}}
+
+% Customize cheatsheet parameters
+\setcheatsheetcolumns{3}
+\setcheatsheetfontsize{6.75}  % Larger font size for readability
+\setcheatsheetmargin{0.1in}
+\setcheatsheetdensity{0.05}
+% \hidecheatsheetheader      % No header needed
+
+\renewcommand{\studentname}{Nicholas Schlabach}
+\renewcommand{\classname}{Math 468, Stochastic Processes}
+\renewcommand{\sheetdate}{April 22nd, 2026}
+
+\begin{document}
+
+% Begin the cheat sheet
+\begincheatsheet
+
+% Probability Review taken from the 466 cheatsheet
+\nsection{Probability Review}
+\nsubsection{Basics}{
+\begin{itemize}
+    \item If $g$ is increasing and $Y=g(X)$, then $F_Y(y)=F_X(g^{-1}(y))$ and $f_Y(y)=f_X(g^{-1}(y))\cdot (g^{-1})'(y)$.
+    \item $V[X]=E[X^2]-E[X]^2=E\big[(X-E[X])^2\big]$
+    \item \textit{Def}: $Cov(X,Y)=E[XY]-E[X]E[Y]$. It follows that $V[X\pm Y]=V[X]+V[Y]\pm 2\text{Cov}(X,Y)$.
+    \item $V[aX-b]=a^2V[X]$
+    \item LOTUS: $E[g(X)]=\int_{-\infty}^\infty g(x)f_X(x)dx$
+    \item \textit{Def}: $F_X(x)=P(X \le x), \; F_{X,Y}(x,y)=P(X\le x, Y \le y) \implies \frac{\partial^2}{\partial x \partial y}F_{X,Y}(x,y)=f_{X,Y}(x,y)$
+    \item Conditional density is $f_{Y|X}(y|x)=\frac{f_{X,Y}(x,y)}{f_X(x)}$.
+\end{itemize}
+}
+\nsubsection{Moment Generating Functions}{
+\begin{itemize}
+    \item \textit{Def}: $M_X(t)=E[e^{tX}] \implies E[X^n]=M^{(n)}_X(0)$
+\end{itemize}
+}
+\nsubsection{Conditional Probability \& Independence}{
+\begin{itemize}
+    \item \textit{Def}: Events are independent if $P(A\cap B)=P(A)P(B)$. RVs are independent if the PDF/PMF factors.
+    \item $P(A|B)=P(A \cap B)/P(B)$
+    \item Law of Total Probability: If $B_j$ is a partition of $\Omega$ then $P(A)=\sum P(A|B_j)P(B_j)$
+    \item If $A,B$ are independent all of the following occur:
+        \begin{itemize}
+        \item $E[AB]=E[A]E[B], \; Cov(A,B)=0$,
+        \item $g(A),g(B)$ are independent regardless of $g,f: \mathbb{R} \to \mathbb{R}$
+        \item $M_{X+Y}=M_X(t)M_Y(t)$ (Ch 7, Thm. 6)
+        \end{itemize}
+\end{itemize}
+}
+
+\nsection{Chapter 2}
+\nsubsection{Definitions}{
+A random (or stochastic process) is a family of random variables on $X_t$ so that $X_t: \Omega\to S$ is a function on a probability space $\Omega$. For midterm 1, time and $S$ are both discrete. \\
+We say that $X$ is a \textit{Markov chain} if $P(X_{n+1}=x_{n+1}|X_0=x_0,X_1=x_1,\dots,X_n=x_n)=P(X_{n+1}=x_{n+1}|X_n=x_n)$. We also assume that a Markov chain is homogenous, meaning that the transition probability is also independent of time $n$. \\
+To be a probability matrix, \textit{rows} must sum to one and entries need to be nonnegative. \\
+\begin{itemize}
+    \item $T_A=\min\{n{>}0:X_n\in A\}$ is  a RV called "hitting time"
+    \item $N(y)=\#\{X_i=y:i\in \mathbb{Z}^+\}$ is the RV number of hits
+    \item $N_n(y)$ is the number of hits up to time $n$
+    \item $\rho_{xy}:=P_x(T_y<\infty)$ is probability $x$ reaches $y$
+    \item $x \in S$ is an absorbing state if $\bP(x,x)=1$
+    \item $y \in S$ is recurrent if $P_y(T_y<\infty)$, is transient otherwise
+    \item $x$ leads to $y$ ($x \to y$) means $\rho_{xy}>0$
+    \item $x$ and $y$ communicate  $(x\leftrightarrow y$) means $x\to y$ and $y\to x$
+    \item A set $C\subseteq S$ of the form $\{y:y\leftrightarrow x\}$ for some fixed $x$ is called a communication class
+    \item A Markov chain is irreducible if $S$ is a single communication class
+    \item A set $C \subseteq S$ is closed if $\forall x \in C,x\to y \implies y\in C$
+    \item An equilibrium distribution $\pi$ satisfies $\pi\bP=\pi$
+    \item This equilibrium is stable iff $\lim_{n \to \infty}\bP^n(x,y)=\pi(y)$ for every $x,y \in S$. Equivalently, for every initial distribution $\pi_0$, $\pi_0\bP^n\to \pi$.
+    \item $m_y:=E_y(T_y)$ is the expected return time. A recurrent state is called null-recurrent if  $m_y=\infty$ and positive recurrent otherwise
+\end{itemize}
+}
+\nsubsection{Basic Properties}{
+\textbf{Thm 2.1}: If $y$ is a transient state $(\rho_yy<1)$, then no matter where the chain starts the chain visits $y$ a finite number of times and the expected number of visits is finite. For any state $x$, $P_x(N(y)<\infty)=1$ and $E_x(N(y))=\sum_{n=1}^\infty \bP^n(x,y)<\infty$. \\
+On other hand, if $y$ is recurrent and starts at $y$ than the chain visits $y$ an  infinite number of times $P_y(N(y)=\infty)=1$ and $E_y(N(y))=\infty$. More generally $P_x(N(y)=\infty)=\rho_{xy}$, $E_x(N(y))=0$ if $\rho_{xy}=0$ and $E_x(N(y))=\infty$ if $\rho_{xy}>0$
+\textbf{Corollary 1}: A state $x$ is transient iff $E_X(N(x))<\infty$ \\
+\textbf{Thm 2.2}: (a) If $x \in S$ is recurrent and $x\to y$, then $Y$ is recurrent, $\rho_{xy}=\rho_{yx}=1$ and $y \to x$. Hence, recurrence is shared across communication classes. (b) The same is true for null recurrent and positive recurrent states. (c) If $S$ is finite, then there is at least one recurrent state and recurrent states are positive recurrent. (d) The set of recurrent states $S_R$ is the disjoint union of communication classes.
+}
+\nsubsection{Equilibrium}{
+The equilibrium vanishes on transient states. \\
+\textbf{Thm 2.3}: Let $N_n(y)$ be the number of visits to $y$ in time $1\le t \le n$, then $\lim_{n\to\infty} \frac{N_N(y)}{n}=\frac{I_{\{T_y<\infty\}}}{m_y}$ with probability one, where $I$ is the indicator function. \\
+\textbf{Thm 2.4}: (a) An equilibrium $\pi$ vanishes on all transient and null recurrent states. (b) A positive recurrent communication class supports a unique equilibrium $\pi(y)=\frac{1}{m_y}$ for $m_y$ finite. (c) Finite closed communication class is automatically positive recurrent
+}
+\nsubsection{Stability of Equilibrum}{
+Define the period as $d_x=gcd\{n:\bP^n(x,x)>0\}$. \\
+Periods are the same for nodes that communicate. \\
+\textbf{Thm 2.5:} If $C$ is a positive recurrent class and $\pi$ is the unique equilibrium supported on $C$.
+(a) If $C$ is aperiodic, then $\pi$ is a stable equilbirum \\
+The Peron-Frobenus thm says real square matrix with positive entries there is a unique eigenvalue of positive magnitude, that eigenvalue is real, has multiplity one, and the eigenvector can be chosen to have nonnegative entries. \\
+\textbf{Them 2.6}: If a chain is finite, irreducible (hence positive recurrent) and for some power $m$, all entreis $P^m$ are nonzero, then the chain is aperiodic and the unique equilibrum ist stable.
+}
+\nsubsection{Misceleaneous}{Note that the formula $\pi(y)=\frac{1}{y}$ for finite states works both ways, if you know the equilbirum then you know the expected return times. \\
+The following may be useful:
+\[ E_X(N(y))=\sum_{n=1}^\infty \bP^n(x,y) \]
+There is another thm stating that if $y$ is transient then the chain visits any other state $y$ a finite number of times and $E_x(N(y))=\frac{\rho_{xy}}{1-\rho_{yy}}$ \\
+The following is useful:
+\[\bP^n(x,y) =\sum_{m=1}^n P_x(T_y=m)\bP^{n-m}(y,y) \]
+}
+% End the cheat sheet
+\endcheatsheet
+\end{document}
