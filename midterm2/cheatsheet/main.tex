@@ -22,8 +22,8 @@
 
 % Customize cheatsheet parameters
 \setcheatsheetcolumns{3}
-\setcheatsheetfontsize{6.0}  % Tune font size for readability/compactness
-\setcheatsheetmargin{0.1in}
+\setcheatsheetfontsize{6}  % Tune font size for readability/compactness
+\setcheatsheetmargin{0.15in}
 \setcheatsheetdensity{0.05}
 % \hidecheatsheetheader      % No header needed
 
@@ -65,7 +65,7 @@
 \nsubsection{Conditional Probability \& Independence}{
 \begin{itemize}
     \item \textit{Def}: Events are independent if $P(A\cap B)=P(A)P(B)$. RVs are independent if the PDF/PMF factors.
-    \item $P(A|B)=P(A \cap B)/P(B)$
+    %\item $P(A|B)=P(A \cap B)/P(B)$
     \item Law of Total Probability: If $B_j$ is a partition of $\Omega$ then $P(A)=\sum P(A|B_j)P(B_j)$
     \item If $A,B$ are independent all of the following occur:
         \begin{itemize}
@@ -123,8 +123,7 @@ The Peron-Frobenus thm says real square matrix with positive entries there is a 
 \textbf{Them 2.6}: If a chain is finite, irreducible (hence positive recurrent) and for some power $m$, all entreis $P^m$ are nonzero, then the chain is aperiodic and the unique equilibrum ist stable.
 }
 \nsubsection{Misceleaneous}{Note that the formula $\pi(y)=\frac{1}{y}$ for finite states works both ways, if you know the equilbirum then you know the expected return times. \\
-The following may be useful:
-\[ E_X(N(y))=\sum_{n=1}^\infty \bP^n(x,y) \]
+The following may be useful: $E_X(N(y))=\sum_{n=1}^\infty \bP^n(x,y)$
 There is another thm stating that if $y$ is transient then the chain visits any other state $y$ a finite number of times and $E_x(N(y))=\frac{\rho_{xy}}{1-\rho_{yy}}$ \\
 The following is useful:
 \[\bP^n(x,y) =\sum_{m=1}^n P_x(T_y=m)\bP^{n-m}(y,y) \]
@@ -160,7 +159,7 @@ Let $X(t)$ be a stochastic process with discrete space $S$. The RVVs $\tau_1,\ta
         \end{enumerate}
         Conversely, given a matrix $\bq$ satisfying (1) there exists a Markov jump process with finite state space having $\bq$ from a generator. Part (a) follows from expanding $P(t)=1+tq+o(t)$
     \item
-        We define $T_y\min\{t \ge \tau_1:X(t)=y\}$ and $\rho_{x,y}=P_x(T_y<\infty$) similar to Markov chains. Say a process is recurrent/transient if all states have that property individually.
+        We define $T_y=\min\{t \ge \tau_1:X(t)=y\}$ and $\rho_{x,y}=P_x(T_y<\infty$) similar to Markov chains. Say a process is recurrent/transient if all states have that property individually.
     \item If $x$ is nonabsorbing, then $Q(x,Y)=P_x(X(\tau_1)=y$. If $x$ is absorbing, then $\overset{\sim}{P}(x,x)=1$ and for $\overset{\sim}{P}(x,y)=0$ when $x\ne y$.
     \item An equilbrium is a dist. such that $\piP(t)=\pi$.
     \item Then $Q$ is a probability transition matrix for a Markov chain which is called the embedded chain (roughly this is $X(\tau_1)X(\tau_2),\dots$).
@@ -175,8 +174,8 @@ Let $X(t)$ be a stochastic process with discrete space $S$. The RVVs $\tau_1,\ta
     \item $W(t_1)-W(s_1),W(t_2)-W(s_2),\dots W(t_n)-W(s_n)$ are independent for $0\le s_1\le t_1\le s_2\le t_2 \dots \le s_n\le t_n$
 \end{enumerate}
 It follows from this definition that $E[(W(t)-W(s))^2/(t-s)=1$
-The following properties are also true:
 \begin{itemize}
+\item $W(t)$ has covariance $\min(s,t)$, mean zero
 \item $W(t)$ is continuous with probability 1
 \item $W(t)$ is not differentiable with probability one
 \item Given any interval $I$, $W(t)$ has infinitely many zeros in $I$, making it recurrent.    
