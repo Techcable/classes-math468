@@ -17,10 +17,12 @@
 
 \newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
 \newcommand*{\bP}{\mathbf{P}}
+\newcommand*{\bp}{\mathbf{p}}
+\newcommand*{\bq}{\mathbf{q}}
 
 % Customize cheatsheet parameters
 \setcheatsheetcolumns{3}
-\setcheatsheetfontsize{6.75}  % Larger font size for readability
+\setcheatsheetfontsize{6.0}  % Tune font size for readability/compactness
 \setcheatsheetmargin{0.1in}
 \setcheatsheetdensity{0.05}
 % \hidecheatsheetheader      % No header needed
@@ -33,6 +35,14 @@
 
 % Begin the cheat sheet
 \begincheatsheet
+\setcounter{seccounter}{-1}
+\nsection{Facts}
+\nsubsection{Algebra}{
+\begin{itemize}
+    \item Geometric Series: $\sum_{k=0}^n r^k=\frac{1-r^{n+1}}{1-r}$
+\end{itemize}}
+
+
 
 % Probability Review taken from the 466 cheatsheet
 \nsection{Probability Review}
@@ -66,6 +76,11 @@
 \end{itemize}
 }
 
+\nsubsection{Facts about RVs}{
+\begin{itemize}
+    \item Both exponential and geometric RVs have the loss of memory property $P(X>n+m|X>m)=P(X>n)$
+\end{itemize}}
+
 \nsection{Chapter 2}
 \nsubsection{Definitions}{
 A random (or stochastic process) is a family of random variables on $X_t$ so that $X_t: \Omega\to S$ is a function on a probability space $\Omega$. For midterm 1, time and $S$ are both discrete. \\
@@ -77,7 +92,7 @@ To be a probability matrix, \textit{rows} must sum to one and entries need to be
     \item $N_n(y)$ is the number of hits up to time $n$
     \item $\rho_{xy}:=P_x(T_y<\infty)$ is probability $x$ reaches $y$
     \item $x \in S$ is an absorbing state if $\bP(x,x)=1$
-    \item $y \in S$ is recurrent if $P_y(T_y<\infty)$, is transient otherwise
+    \item $y \in S$ is recurrent if $P_y(T_y<\infty)=1$, is transient otherwise
     \item $x$ leads to $y$ ($x \to y$) means $\rho_{xy}>0$
     \item $x$ and $y$ communicate  $(x\leftrightarrow y$) means $x\to y$ and $y\to x$
     \item A set $C\subseteq S$ of the form $\{y:y\leftrightarrow x\}$ for some fixed $x$ is called a communication class
@@ -114,6 +129,80 @@ There is another thm stating that if $y$ is transient then the chain visits any 
 The following is useful:
 \[\bP^n(x,y) =\sum_{m=1}^n P_x(T_y=m)\bP^{n-m}(y,y) \]
 }
+\nsection{Markov Jump Processes}
+\nsubsection{Basics}{
+
+Let $X(t)$ be a stochastic process with discrete space $S$. The RVVs $\tau_1,\tau_2\dots$ denote the jumps for the process. We say $X(t)$ is a Markov jump process if it satisfies the markov property $P(X(t)=y|X(s_1)=x_1\dots,X(s_n)=x_n,X(s)=x)=\bP(t-s,x,y)$
+\begin{itemize}
+    \item For a Markov jump process $P(X(0){=}x_0,\dots,X(t_n){=}x_n)=\pi(x_0)\bp(t_1;x_0,x_1)\dots \bp(t_n-t_n{-1},;x_{n-1},x_n)$
+    \item The transition function satisfies the Chapman-Kolmogorov equation $\bP(s+t)=\bP(s)\bP(t)$ or $\bP(s+t);x,z)=\sum_{y \in S}\BP(s;x,y)\bP(t;y,z)$. Then $\bP(t)=e^{t\bq}$ where $\bq=\bp'(0)$. 
+    \item For $x\ne y$, $b\q(x,y)$ is the rate at which the chain jumps from $x$ to $y$ and $q_x=-\bq(x,x)=\sum_{y \ne x}\bq(x,y)$ is the rate at which the chain jumps from $x$ to $y$.
+    \item If $\tau_1,\tau_2,\dots$ denote the times of the jumps, then $\tau_1,\tau_2-\tau_1,\dots$ are independent random variables. If the chain starts in state $x$, then $\tau_1$ is an exponential RV with parameter $q_x$
+\end{itemize}}
+\nsubsection{Poisson Process}{
+\begin{itemize}
+    \item In the case of a Poisson process, the states are $\Z$ where $\bq$ has entries $-\lambda$ on the diagonal and $\lambda$ for each entry directly above the diagonal.
+    \item The following characterizes the Poisson process:
+        \begin{itemize}
+        \item $X(0)=0$ and $X(t_1),X(t_2)-X(t_2),\dots$ are independent
+        \item $X(t)=x(s)$ has Poisson distribution with parameter $\lambda(t-s)$ 
+        \end{itemize}
+    \item
+\end{itemize}
+}
+\nsubsection{Important Properties}{
+\begin{itemize}
+    \item For a stochastic matrix $\bP$, $\lambda=1$ is an eigenvalue and the other eigenvalues lie in $\mathbb{C}$ and hae magnitude less than one. A Markov jump process is determined by an initial dist. and the infinitesimal generator matrix $\bq(x,y)$. Given $\bq$, the dynamics of the process are dtermiend by the family of stocahstic matrices $\bP(t)=e^{t\bq}$ satisyfing Chapman-Kolmogorov $\bP(t+s)=\bP(t)\bP(s)$.
+    \item Given a Markiov jump process
+        \begin{enumerate}
+        \item The off-diagonal entries of $\bq$ are nonnegative, and the diagonal entries are negative. The sum of the entries on any row is zero.
+        \item It follows zero is an eigenvalue with eigenvector $\mathbf{1}$ and the other eigenvalues have negative real part (this follows from the similar stmt. on $\bP$)
+        \end{enumerate}
+        Conversely, given a matrix $\bq$ satisfying (1) there exists a Markov jump process with finite state space having $\bq$ from a generator. Part (a) follows from expanding $P(t)=1+tq+o(t)$
+    \item
+        We define $T_y\min\{t \ge \tau_1:X(t)=y\}$ and $\rho_{x,y}=P_x(T_y<\infty$) similar to Markov chains. Say a process is recurrent/transient if all states have that property individually.
+    \item If $x$ is nonabsorbing, then $Q(x,Y)=P_x(X(\tau_1)=y$. If $x$ is absorbing, then $\overset{\sim}{P}(x,x)=1$ and for $\overset{\sim}{P}(x,y)=0$ when $x\ne y$.
+    \item An equilbrium is a dist. such that $\piP(t)=\pi$.
+    \item Then $Q$ is a probability transition matrix for a Markov chain which is called the embedded chain (roughly this is $X(\tau_1)X(\tau_2),\dots$).
+    \item The quantities $\rho_{x,y}$ for Makov jump processes are the same as the corresponding quanitties for the embedded chain. Then $\pi(y)=\frac{1}{q_ym_y}$ where $m_y=E_Y(T_y)$ is the expected return time.
+    \item $q(x,y)=q_xQ(x,y)$. In words, the rate of change for the system to leave $x$ (which will occur at time $\tau_1)$ and go to $y$ is equal to the rate of change for the system to leave $x$ times the probability that the system will go from $x$ to $y$
+\end{itemize}
+}
+\nsection{Brownian Motion \& Stochastic Integrals}
+\nsubsection{Brownian Motion}{By def, Brownian motion (or the Wiener process) satisfies
+\begin{enumerate}
+    \item $W(0)=0$ and $W(t)-W(s)\sim N(0,t-s)$ is a normal RV.
+    \item $W(t_1)-W(s_1),W(t_2)-W(s_2),\dots W(t_n)-W(s_n)$ are independent for $0\le s_1\le t_1\le s_2\le t_2 \dots \le s_n\le t_n$
+\end{enumerate}
+It follows from this definition that $E[(W(t)-W(s))^2/(t-s)=1$
+The following properties are also true:
+\begin{itemize}
+\item $W(t)$ is continuous with probability 1
+\item $W(t)$ is not differentiable with probability one
+\item Given any interval $I$, $W(t)$ has infinitely many zeros in $I$, making it recurrent.    
+\end{itemize}}
+\nsubsection{Stochastic Integrals}{
+We define the stochastic integral of $f$ relative to Brownian motion as
+\[\int_a^b f(t)dW(t)=f(b)W(b)-f(a)W(a)-\int_a^bf'(t)W(t)dt \]
+We call $dW(t)$ white noise. This integral has the following properties
+\begin{itemize}
+    \item The integral is linear in $f$
+    \item $E[\int_a^bf(t)dW(t)]=0, V[\int_a^bf(t)dW(t)]=\int_a^b f(t)^2dt$. Intuitively this follows from $dW(t)$ being "independent"
+    \item Product of expectations is expectation of product
+        \[ E\Big[\Big(\int_a^bf(t)dW(t)\Big)\Big(\int_a^b g(t)dW(t)\Big)\Big]=\int_a^bf(t)g(t)dW(t)\ \]
+\end{itemize}
+}
+\nsubsection{Ito Stochastic Integral}{
+% NOTE: It matters how we do t_
+We define the Ito stochastic integral using a Riemann sum $Z(t)=\int_0^tY(s)dW(s)=\lim \sum Y(t_k)(W(t_{k+1})-W(t_k))$  \\
+This is linear in $Y$, has mean zero and is a cont. function of $t$. The variance is $V[Z(t)]=\int_0^t E[Y(s)^2)ds$.  \\
+Now suppose that $F \in C^2$. Then $Y(t)=F(W(t))$ is a non-anticipating process compared to Brownian motion and 
+\[ dF(W(t))=F'(W(t))dW(t)+\frac{1}{2}F''(W(t))dt \]
+Integrating gives $\int_0^t dF(W(t))=F(W(t))-F(W(0))=\dots$ \\
+Even more generally, with $Y(t)=F(t(W(t))$ we get  
+$dF(t,W(t))=F'(t,W(t))dW(t)+\big(\dot{F}(t,W(t))+\frac{1}{2}F''(t,W(t))\big)dt $.
+}
+
 % End the cheat sheet
 \endcheatsheet
 \end{document}
