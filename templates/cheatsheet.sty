@@ -1,0 +1,164 @@
+% cheatsheet.sty - A LaTeX package for creating customizable cheat sheets
+% Modified version with improved font size handling
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cheatsheet}[2025/05/06 v1.1 Customizable Cheat Sheet Package]
+
+% Load required packages
+\RequirePackage{geometry}
+\RequirePackage{multicol}
+\RequirePackage{enumitem}
+\RequirePackage[svgnames,table,dvipsnames]{xcolor} % Enhanced color support
+\RequirePackage{ifthen}
+\RequirePackage{amsmath}    % For \text command and math environments
+\RequirePackage{amssymb}    % For \mathbb symbols
+\RequirePackage{bm}         % For \bm command (bold math)
+
+% =============================================
+% CUSTOMIZABLE PARAMETERS
+% =============================================
+\newcommand{\numcols}{3}                     % Number of columns
+\newcommand{\basefontsize}{5}                % Base font size
+\newcommand{\baselineheight}{6}              % Baseline height
+\newcommand{\pagemargin}{0.15in}             % Page margin
+\newcommand{\colseparation}{0.12in}          % Column separation
+\newcommand{\colsepline}{0.3pt}              % Column separator line
+\newcommand{\sectionfontsize}{6.5}           % Section title font size
+\newcommand{\sectionlineheight}{7}           % Section title line height
+\newcommand{\subsectionfontsize}{6}          % Subsection title font size
+\newcommand{\subsectionlineheight}{6.5}      % Subsection title line height
+\newcommand{\itemleftmargin}{0.5em}          % Item left margin
+\newcommand{\interitemspace}{1pt}            % Space between items
+
+% Header information
+\newcommand{\studentname}{Your Name}         % Student name
+\newcommand{\classname}{Course Name}         % Class name
+\newcommand{\sheetdate}{\today}              % Date (default: today)
+\newcommand{\showheader}{true}               % Show/hide header (true/false)
+
+% User-friendly settings commands
+\newcommand{\setcheatsheetcolumns}[1]{\renewcommand{\numcols}{#1}}
+\newcommand{\setcheatsheetfontsize}[1]{%
+  \renewcommand{\basefontsize}{#1}%
+  \renewcommand{\baselineheight}{\dimexpr#1*1.2\relax}% Auto-adjust baseline height
+  \renewcommand{\sectionfontsize}{\dimexpr#1*1.3\relax}% Auto-adjust section size
+  \renewcommand{\sectionlineheight}{\dimexpr#1*1.4\relax}%
+  \renewcommand{\subsectionfontsize}{\dimexpr#1*1.2\relax}% Auto-adjust subsection size
+  \renewcommand{\subsectionlineheight}{\dimexpr#1*1.3\relax}%
+}
+\newcommand{\setcheatsheetmargin}[1]{\renewcommand{\pagemargin}{#1}\geometry{margin=#1}}
+\newcommand{\setcheatsheetcolsep}[1]{\renewcommand{\colseparation}{#1}\setlength{\columnsep}{#1}}
+\newcommand{\setcheatsheetdensity}[1]{%
+  \renewcommand{\baselineheight}{#1}%
+  \renewcommand{\interitemspace}{#1}%
+}
+\newcommand{\setcheatsheetsecsize}[1]{\renewcommand{\sectionfontsize}{#1}}
+\newcommand{\setcheatsheetsubsecsize}[1]{\renewcommand{\subsectionfontsize}{#1}}
+\newcommand{\setcheatsheetheader}[3]{%
+  \renewcommand{\studentname}{#1}%
+  \renewcommand{\classname}{#2}%
+  \renewcommand{\sheetdate}{#3}%
+}
+\newcommand{\hidecheatsheetheader}{\renewcommand{\showheader}{false}}
+
+% Basic settings
+\geometry{margin=\pagemargin}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+\linespread{0.9}
+\setlength{\columnsep}{\colseparation}
+\setlength{\columnseprule}{\colsepline}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Define section colors - using named colors for better compatibility
+\definecolor{sec1color}{RGB}{242, 242, 242}  % Light gray
+\definecolor{sec2color}{RGB}{242, 230, 230}  % Light pink
+\definecolor{sec3color}{RGB}{230, 242, 230}  % Light green
+\definecolor{sec4color}{RGB}{230, 230, 242}  % Light blue
+\definecolor{sec5color}{RGB}{242, 242, 217}  % Light yellow
+\definecolor{sec6color}{RGB}{230, 242, 242}  % Light cyan
+\definecolor{sec7color}{RGB}{242, 230, 242}  % Light magenta
+\definecolor{formulabg}{RGB}{255, 250, 230}  % Light cream for formulas
+
+% Compact lists with proper font size
+\newcommand{\setlistfontsize}{%
+  \setlist[itemize]{font=\fontsize{\basefontsize}{\baselineheight}\selectfont,
+                  nolistsep, leftmargin=\itemleftmargin, topsep=0pt, 
+                  itemsep=\interitemspace, labelindent=0em, labelsep=0.2em, parsep=0pt}
+  \setlist[enumerate]{font=\fontsize{\basefontsize}{\baselineheight}\selectfont,
+                  nolistsep, leftmargin=1.5em, topsep=0pt, itemsep=\interitemspace, 
+                  labelindent=0em, labelsep=0.2em, parsep=0pt}
+}
+
+% Apply list settings initially
+\setlistfontsize
+
+% Section headers
+\newcounter{seccounter}
+\newcounter{subseccounter}[seccounter]
+
+% Simplified color selection function
+\newcommand{\getsectioncolor}{%
+  \ifcase\numexpr\value{seccounter} % We start from 0 because of how \ifcase works
+    sec1color\or sec1color\or sec2color\or sec3color\or sec4color\or sec5color\or 
+    sec6color\or sec7color\or sec1color\or sec2color\or sec3color\or sec4color\or 
+    sec5color\or sec6color\or sec7color\or sec1color\or sec2color\or sec3color\or 
+    sec4color\or sec5color\or sec6color\or sec7color\else sec1color\fi
+}
+
+% Numbered section with color-matched title
+\newcommand{\nsection}[1]{%
+  \stepcounter{seccounter}%
+  \setcounter{subseccounter}{0}%
+  \vspace{2pt}\noindent%
+  \colorbox{\getsectioncolor}{%
+    \begin{minipage}{\dimexpr\columnwidth-2\fboxsep-2\fboxrule\relax}%
+      \fontsize{\sectionfontsize}{\sectionlineheight}\selectfont\textbf{\theseccounter\hspace{0.75em}#1}%
+    \end{minipage}%
+  }%
+  \vspace{2pt}\par%
+  \fontsize{\basefontsize}{\baselineheight}\selectfont% Reapply base font size after section
+}
+
+% Simple colored subsection - no environment needed
+\newcommand{\nsubsection}[2]{%
+  \stepcounter{subseccounter}%
+  \vspace{2pt}\noindent%
+  \colorbox{\getsectioncolor}{%
+    \begin{minipage}{\dimexpr\columnwidth-2\fboxsep-2\fboxrule\relax}%
+      \fontsize{\subsectionfontsize}{\subsectionlineheight}\selectfont\textbf{\theseccounter.\thesubseccounter\hspace{0.5em}#1}\par%
+      \vspace{2pt}%
+      \fontsize{\basefontsize}{\baselineheight}\selectfont% Apply font size to content
+      #2
+    \end{minipage}%
+  }%
+  \vspace{2pt}%
+  \fontsize{\basefontsize}{\baselineheight}\selectfont% Reapply after subsection
+}
+
+% Formula highlight
+\newcommand{\keyfm}[1]{%
+  \colorbox{formulabg}{$#1$}%
+}
+
+% Begin cheat sheet (call this after \begin{document})
+\newcommand{\begincheatsheet}{%
+  % Display header if enabled
+  \ifthenelse{\equal{\showheader}{true}}{%
+    \fontsize{\sectionfontsize}{\sectionlineheight}\selectfont
+    \noindent\textbf{\studentname} \hfill \textbf{\classname} \hfill \textbf{\sheetdate}
+    \vspace{0.05in}\hrule
+  }{}
+
+  % Apply selected font size globally
+  \fontsize{\basefontsize}{\baselineheight}\selectfont
+  \setlistfontsize% Apply to lists
+  \pagestyle{empty}
+
+  \begin{multicols}{\numcols}
+}
+
+% End cheat sheet (call this before \end{document})
+\newcommand{\endcheatsheet}{%
+  \end{multicols}
+}
