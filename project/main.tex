@@ -1,0 +1,119 @@
+\documentclass[14pt,letterpaper]{extarticle}
+\usepackage[utf8]{inputenc}
+
+% Set margins
+% https://tex.stackexchange.com/a/327136
+% this should replace use of the 'fullpage' package
+\usepackage[
+    includehead,
+    margin=2.5cm,
+    bmargin=2cm,
+]{geometry}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim} % This works better than comment for some reason
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{xfrac} % Fractions - https://tex.stackexchange.com/a/230973
+\usepackage{xcolor}
+
+% The magic latex drawing thing
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage[en-US,showdow]{datetime2}
+
+% Colored hyperlinks:
+% https://www.overleaf.com/learn/latex/Hyperlinks
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+
+% Setup nice headings
+% https://www.overleaf.com/learn/latex/Headers_and_footers
+\usepackage{fancyhdr}
+\usepackage{titling} % Save title for use in fancyhdr
+
+% Shortcuts
+\newcommand*{\bP}{\mathbf{P}}
+\newcommand*{\bq}{\mathbf{q}}
+
+\newcommand*{\bv}{\mathbf{v}}
+\newcommand*{\bu}{\mathbf{u}}
+
+
+\newcommand*{\Cov}{\operatorname{Cov}}
+
+
+
+% Use black tombstone for QED
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Important sets
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\Z}{\mathbb{Z}}
+
+%
+% symbols
+%
+
+% name by meaning, not by character
+\newcommand{\grad}{\nabla}
+
+
+% New command for 'partial QED' using white tombstone
+\newcommand*{\partialqed}{$\hfill \square$ \\}
+
+\newcommand*{\todo}{{\color{red}\textbf{TODO:}} }
+
+% Increased spaces spacing
+\usepackage{setspace} \onehalfspacing
+
+\title{Math 468 - Final Project}
+\author{Nicholas Schlabach (nickninja@arizona.edu)}
+\DTMsavedate{titledate}{2026-05-05}
+\date{\DTMUsedate{titledate}}
+
+%% Copied from https://tex.stackexchange.com/a/2238
+%% Modified by Techcable 9/19/21 to use '[...]' instead of '(...)'
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead[L]{Nicholas Schlabach}
+\fancyhead[C]{\hspace{5mm}\Big(\thetitle{}\Big)}
+\fancyhead[R]{{\DTMsetdatestyle{mmddyy}\DTMusedate{titledate}}, Page \thepage}
+\fancyfoot{} % no footer
+\maketitle
+% maketitle automatically sets pagestyle=plain, override this
+\thispagestyle{fancy}
+
+\text{ } \\
+I aim to prove the following statement: If $A$ is a matrix with positive real entries, there is a unique eigenvalue of largest magnitude, that eigenvalue is real, and the corresponding eigenvector can be chosen to have strictly positive components.
+\section*{Lawler's Proof of Perron-Frobenius}
+Define $\bu\ge \bv$ if $\forall i, u_i\ge v_i$ and likewise for the other comparison operators. 
+\vspace{5mm} \\
+Assume that $A$ is a $n \times n$ matrix with positive real coefficients. 
+\vspace{2mm} \\
+Lawler problem (a) claims that if $\bv>0$ and $\bv \ne \mathbf{0}$ then $A\bv>0$. By def. of matrix multiplication: 
+        \[ (A\bv)_i=\sum_{j=1}^n a_{ij}\bv_i \]
+        Each term of the sum is nonnegative as $a_{ij}>0$ and $\bv\ge 0$. Since $\bv\ne 0$, at least one term $a_{ij}\bv_i$ is nonzero and so the sum $(A\bv)_i$ is positive. This is true for every $i \in \{1,\dots,n\}$, so in fact every entry of $\bv$ is positive and $\bv>0$. This proves problem (a), henceforth referred to as lemma (a).
+\vspace{2mm} \\
+If $\bv\ge 0$, define $g(\bv)$ as the largest $\lambda$ s.t. $A\bv\ge \lambda \bv$, so $g(\bv)=\max\{\lambda:A\bv \ge \lambda \bv\}$. Clearly $g(\bv) \ge 0$ as $A\bv \ge 0\bv =\mathbf{0}$ (still using $\bv\ge 0$). The function $g(\bv)$ is well-defined since $A\bv$ is bounded and the set $\{\lambda:A\bv \ge \lambda \bv\}\cap \mathbb{R}_{\ge0}$ is closed.
+\vspace{2mm} \\
+Lemma (b): Assume $\bv\ge 0$, I claim $g(\bv)>0$ and $\forall c>0, g(c\bv)=g(v)$. We already know $g(\bv)\ge 0$ from above. Using lemma (a), we know that $A\bv>0$. It follows that there must be some $\lambda>0$ s.t. $A\bv\ge \lambda\bv$ proving the first part of the lemma. Consider the equation $A(c\bv)\ge \lambda (c\bv)$. Dividing both sides by $c$ gives the equation $A\bv\ge \lambda\bv$ (this is valid since we are really just looking at $n$ equations in $\R$). It follows that the equations $A(c\bv)\ge \lambda (c\bv)$ and $A\bv\ge \lambda \bv$ have the same set of solutions $\lambda$ and so $g(\bv)=g(c\bv)$ for $c>0$.
+\vspace{2mm} \\
+Let $\alpha=\sup \{g(\bv):\bv \ge 0,\bv \ne \mathbf{0}\}$. Lemma (c) says that $g(c\bv)=g(\bv)$ so we can equivalently define $\alpha$ in terms of the unit vectors:
+\[ \alpha=\sup\{g(\bv):\bv\ge 0, |\bv|=1\} \]
+The set $\{\bv:|\bv|=1\}$ is clearly closed and bounded, so it is compact. The function $g$ is continuous, as small changes in $\bv$ should lead to small changes in the maximum $\lambda$. It follows that $g$ attains a maximum on the set defining $\alpha$ and so there exists some unit-vector $\bv_\alpha$ such that $g(\bv_\alpha)=\alpha$ and $\bv_\alpha \ge 0$.
+\textit{NOTE}: Although $\alpha$ is unique, the vector $\bv_\alpha$ may not be.
+\end{document}
