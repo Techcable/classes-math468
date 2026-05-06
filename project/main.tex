@@ -41,9 +41,11 @@
 \newcommand*{\bP}{\mathbf{P}}
 \newcommand*{\bq}{\mathbf{q}}
 
+% vectors
 \newcommand*{\bv}{\mathbf{v}}
 \newcommand*{\bu}{\mathbf{u}}
-
+% bold vector zero
+\newcommand*{\bvz}{\mathbf{0}}
 
 \newcommand*{\Cov}{\operatorname{Cov}}
 
@@ -104,11 +106,11 @@ Define $\bu\ge \bv$ if $\forall i, u_i\ge v_i$ and likewise for the other compar
 \vspace{5mm} \\
 Assume that $A$ is a $n \times n$ matrix with positive real coefficients. 
 \vspace{2mm} \\
-Lawler problem (a) claims that if $\bv>0$ and $\bv \ne \mathbf{0}$ then $A\bv>0$. By def. of matrix multiplication: 
+Lemma (a) claims that if $\bv\ge \bvz$ and $\bv \ne \bvz$ then $A\bv>0$. By def. of matrix multiplication: 
         \[ (A\bv)_i=\sum_{j=1}^n a_{ij}\bv_i \]
         Each term of the sum is nonnegative as $a_{ij}>0$ and $\bv\ge 0$. Since $\bv\ne 0$, at least one term $a_{ij}\bv_i$ is nonzero and so the sum $(A\bv)_i$ is positive. This is true for every $i \in \{1,\dots,n\}$, so in fact every entry of $\bv$ is positive and $\bv>0$. This proves problem (a), henceforth referred to as lemma (a).
 \vspace{2mm} \\
-If $\bv\ge 0$, define $g(\bv)$ as the largest $\lambda$ s.t. $A\bv\ge \lambda \bv$, so $g(\bv)=\max\{\lambda:A\bv \ge \lambda \bv\}$. Clearly $g(\bv) \ge 0$ as $A\bv \ge 0\bv =\mathbf{0}$ (still using $\bv\ge 0$). The function $g(\bv)$ is well-defined since $A\bv$ is bounded and the set $\{\lambda:A\bv \ge \lambda \bv\}\cap \mathbb{R}_{\ge0}$ is closed.
+If $\bv\ge 0$, define $g(\bv)$ as the largest $\lambda$ s.t. $A\bv\ge \lambda \bv$, so $g(\bv)=\max\{\lambda:A\bv \ge \lambda \bv\}$. Clearly $g(\bv) \ge 0$ as $A\bv \ge 0\bv =\bvz$ (still using $\bv\ge 0$). The function $g(\bv)$ is well-defined since $A\bv$ is bounded and the set $\{\lambda:A\bv \ge \lambda \bv\}\cap \mathbb{R}_{\ge0}$ is closed.
 \vspace{2mm} \\
 Lemma (b): Assume $\bv\ge 0$, I claim $g(\bv)>0$ and $\forall c>0, g(c\bv)=g(v)$. We already know $g(\bv)\ge 0$ from above. Using lemma (a), we know that $A\bv>0$. It follows that there must be some $\lambda>0$ s.t. $A\bv\ge \lambda\bv$ proving the first part of the lemma. Consider the equation $A(c\bv)\ge \lambda (c\bv)$. Dividing both sides by $c$ gives the equation $A\bv\ge \lambda\bv$ (this is valid since we are really just looking at $n$ equations in $\R$). It follows that the equations $A(c\bv)\ge \lambda (c\bv)$ and $A\bv\ge \lambda \bv$ have the same set of solutions $\lambda$ and so $g(\bv)=g(c\bv)$ for $c>0$.
 \vspace{2mm} \\
@@ -116,4 +118,6 @@ Let $\alpha=\sup \{g(\bv):\bv \ge 0,\bv \ne \mathbf{0}\}$. Lemma (c) says that $
 \[ \alpha=\sup\{g(\bv):\bv\ge 0, |\bv|=1\} \]
 The set $\{\bv:|\bv|=1\}$ is clearly closed and bounded, so it is compact. The function $g$ is continuous, as small changes in $\bv$ should lead to small changes in the maximum $\lambda$. It follows that $g$ attains a maximum on the set defining $\alpha$ and so there exists some unit-vector $\bv_\alpha$ such that $g(\bv_\alpha)=\alpha$ and $\bv_\alpha \ge 0$.
 \textit{NOTE}: Although $\alpha$ is unique, the vector $\bv_\alpha$ may not be.
+\vspace{2mm} \\
+Lemma (c): I now claim that each $\bv_\alpha$ is an eigenvector of $A$ associated with eigenvalue $\alpha$.  BWOC, assume that either some $\bv_\alpha$ is not an eigenvector of $A$ or its associated eigenvalue is not $\alpha$. In either case, $A\bv_\alpha \ne \alpha\bv_\alpha$. \\ Now consider the quantity $A[A\bv_\alpha-\alpha\bv_\alpha]$. It follows from the hypothesis that $A\bv_\alpha - \alpha\bv_\alpha\ne \bvz$. By choice of $\alpha$, $g(\bv_\alpha)=\alpha$, $\bv_\alpha\ge \bvz$ and $A\bv_\alpha \ge \alpha \bv_\alpha$. It follows that $A\bv_\alpha -\alpha\bv_\alpha\ge \bvz$. Since this quantity is also not the zero vector, it satisfies the requirements of lemma (a), so we have $A[A\bv_\alpha-\alpha\bv_\alpha]>\bvz$.
 \end{document}
