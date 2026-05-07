@@ -119,5 +119,16 @@ Let $\alpha=\sup \{g(\bv):\bv \ge 0,\bv \ne \mathbf{0}\}$. Lemma (c) says that $
 The set $\{\bv:|\bv|=1\}$ is clearly closed and bounded, so it is compact. The function $g$ is continuous, as small changes in $\bv$ should lead to small changes in the maximum $\lambda$. It follows that $g$ attains a maximum on the set defining $\alpha$ and so there exists some unit-vector $\bv_\alpha$ such that $g(\bv_\alpha)=\alpha$ and $\bv_\alpha \ge 0$.
 \textit{NOTE}: Although $\alpha$ is unique, the vector $\bv_\alpha$ may not be.
 \vspace{2mm} \\
-Lemma (c): I now claim that each $\bv_\alpha$ is an eigenvector of $A$ associated with eigenvalue $\alpha$.  BWOC, assume that either some $\bv_\alpha$ is not an eigenvector of $A$ or its associated eigenvalue is not $\alpha$. In either case, $A\bv_\alpha \ne \alpha\bv_\alpha$. \\ Now consider the quantity $A[A\bv_\alpha-\alpha\bv_\alpha]$. It follows from the hypothesis that $A\bv_\alpha - \alpha\bv_\alpha\ne \bvz$. By choice of $\alpha$, $g(\bv_\alpha)=\alpha$, $\bv_\alpha\ge \bvz$ and $A\bv_\alpha \ge \alpha \bv_\alpha$. It follows that $A\bv_\alpha -\alpha\bv_\alpha\ge \bvz$. Since this quantity is also not the zero vector, it satisfies the requirements of lemma (a), so we have $A[A\bv_\alpha-\alpha\bv_\alpha]>\bvz$.
+Lemma (c): I now claim that each $\bv_\alpha$ is an eigenvector of $A$ associated with eigenvalue $\alpha$. 
+BWOC, assume that either some $\bv_\alpha$ is not an eigenvector of $A$ or its associated eigenvalue is not $\alpha$. In either case, $A\bv_\alpha \ne \alpha\bv_\alpha$. \\
+Now consider the quantity $A[A\bv_\alpha-\alpha\bv_\alpha]$.
+It follows from the hypothesis that $A\bv_\alpha - \alpha\bv_\alpha\ne \bvz$.
+By choice of $\alpha$, $g(\bv_\alpha)=\alpha$, $\bv_\alpha\ge \bvz$ and $A\bv_\alpha \ge \alpha \bv_\alpha$.
+It follows that $\mathbf{s}:=A\bv_\alpha -\alpha\bv_\alpha\ge \bvz$.
+Since $\mathbf{s}\ne \bvz$ by hypothesis, it satisfies the requirements of lemma (a), so we have $A\mathbf{s}>\bvz$.
+Using the linearity of $A$ we get $A\mathbf{s}=A^2\bv_\alpha-\alpha A\bv_a>\bvz$.
+It follows that $A(A\bv_a)>\alpha(A\bv_\alpha)$. 
+Since every entry of $A(A\bv_a)$ is strictly larger than every entry of $\alpha(A\bv_a)$, there exists some $\epsilon>0$ so that $A(A\bv_\alpha)\ge (\alpha+\epsilon)(A\bv_a)$.
+However, by definition of $g$ and $\alpha$, $\alpha$ is the largest $\lambda$ satisfying $A\bu\ge \lambda\bu$ where $\bu$ is an arbitrary vector.
+So finding a larger value $\alpha+\epsilon$ satisfying the same inequality is a contadiction.
 \end{document}
