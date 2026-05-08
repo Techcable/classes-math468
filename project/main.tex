@@ -114,10 +114,10 @@ If $\bv\ge 0$, define $g(\bv)$ as the largest $\lambda$ s.t. $A\bv\ge \lambda \b
 \vspace{2mm} \\
 Lemma (b): Assume $\bv\ge 0$, I claim $g(\bv)>0$ and $\forall c>0, g(c\bv)=g(v)$. We already know $g(\bv)\ge 0$ from above. Using lemma (a), we know that $A\bv>0$. It follows that there must be some $\lambda>0$ s.t. $A\bv\ge \lambda\bv$ proving the first part of the lemma. Consider the equation $A(c\bv)\ge \lambda (c\bv)$. Dividing both sides by $c$ gives the equation $A\bv\ge \lambda\bv$ (this is valid since we are really just looking at $n$ equations in $\R$). It follows that the equations $A(c\bv)\ge \lambda (c\bv)$ and $A\bv\ge \lambda \bv$ have the same set of solutions $\lambda$ and so $g(\bv)=g(c\bv)$ for $c>0$.
 \vspace{2mm} \\
-Let $\alpha=\sup \{g(\bv):\bv \ge 0,\bv \ne \mathbf{0}\}$. Lemma (c) says that $g(c\bv)=g(\bv)$ so we can equivalently define $\alpha$ in terms of the unit vectors:
-\[ \alpha=\sup\{g(\bv):\bv\ge 0, |\bv|=1\} \]
-The set $\{\bv:|\bv|=1\}$ is clearly closed and bounded, so it is compact. The function $g$ is continuous, as small changes in $\bv$ should lead to small changes in the maximum $\lambda$. It follows that $g$ attains a maximum on the set defining $\alpha$ and so there exists some unit-vector $\bv_\alpha$ such that $g(\bv_\alpha)=\alpha$ and $\bv_\alpha \ge 0$.
-\textit{NOTE}: Although $\alpha$ is unique, the vector $\bv_\alpha$ may not be.
+Let $V=\{\bv:\bv \ge 0,\bv\ne \bvz\}, V_{\text{unit}}=\{\bv:\bv \ge 0, \bv \ne \bvz\}, \alpha=\sup g(V)$. \\
+Lemma (c) says that $g(c\bv)=g(\bv)$ so we know that the value $\alpha$ is unaffected by the magnitude of the vectors being considered (assuming those vectors are nonnegative). In other words $\alpha=\sup g(V)=\sup(V_{\text{unit}})$. \\
+The set $V_{\text{unit}}$ is closed and bounded, so it is compact. The function $g$ is continuous, as small changes in $\bv$ should lead to small changes in the maximum $\lambda$. It follows that $g$ attains a maximum on the set $V_{\text{unit}}$. As argued above, lemma (c) means that $\sup g(V)=\sup g(V_{\text{unit}})$. Since $g$ attains a maximum on $V_{\text{unit}}$ it attains that same maximum on $V$. This means $\alpha$ is not just the supremum of $g(V)$, but a maximum as well. As a result, there exists at least one vector $\bv_\alpha$ such that each2$g(\bv_\alpha)=\alpha$ and $\bv_\alpha \ge 0$. \\
+\textit{NOTE}: While the value $\alpha$ is unique, there will always be multiple $\bv_\alpha$ due to the ability to rescale by a constant.
 \vspace{2mm} \\
 Lemma (c): I now claim that each $\bv_\alpha$ is an eigenvector of $A$ associated with eigenvalue $\alpha$. 
 BWOC, assume that either some $\bv_\alpha$ is not an eigenvector of $A$ or its associated eigenvalue is not $\alpha$. In either case, $A\bv_\alpha \ne \alpha\bv_\alpha$. \\
@@ -129,16 +129,12 @@ Since $\mathbf{s}\ne \bvz$ by hypothesis, it satisfies the requirements of lemma
 Using the linearity of $A$ we get $A\mathbf{s}=A^2\bv_\alpha-\alpha A\bv_a>\bvz$.
 It follows that $A(A\bv_a)>\alpha(A\bv_\alpha)$. 
 Since every entry of $A(A\bv_a)$ is strictly larger than every entry of $\alpha(A\bv_a)$, there exists some $\epsilon>0$ so that $A(A\bv_\alpha)\ge (\alpha+\epsilon)(A\bv_a)$.
-However, by definition of $g$ and $\alpha$, $\alpha$ is the largest $\lambda$ satisfying $A\bu\ge \lambda\bu$ where $\bu$ is an arbitrary vector.
+However, by definition of $g$ and $\alpha$, $\alpha$ is the largest $\lambda$ satisfying $A\bu\ge \lambda\bu$ where $\bu \ge \bvz$ is an arbitrary vector.
 So finding a larger value $\alpha+\epsilon$ satisfying the same inequality is a contadiction.
 \vspace{2mm} \\
-Lemma (d): I now claim that the vector $\bv_\alpha\ge \bvz$ satisfying $g(\bv_\alpha)=\alpha$ is unique.
-Assume that this is not the case, so that there is a $\bv_\alpha'\ne \bv_\alpha$ s.t. $g(\bv_\alpha')=g(\bv_\alpha)=\alpha$.
-As argued in part (c), we can assume these vectors $\bv_\alpha,\bv_\alpha'$ are unit vectors.
-% The \bv_\alpha should not be chosen until part (d).
-% In particular, the unit vector argument is only to argue for existence.
-% It does not constrain the vectors we argue about in (c)
-%
-% This is so that we can later impose a different uniqueness constraint,
-% that the sum of the coefficients  is one.
+Lemma (d): I now claim that the vector $\bv_\alpha\ge \bvz$ satisfying $g(\bv_\alpha)=\alpha$ is unique, provided that it satisfies the normalization condition $\sum_{i=1}^n (\bv_\alpha)_i=1$. \\
+% The _N here denotes "nonnegative".
+Define the norm $|\bv|_N=\sum_{i=1}^n \bv_i$ for all nonnegative vectors $\bv\ge \bvz$ (equivalent to Manhattan distance since all entries are nonnegative). This means the normalization condition becomes $|\bv_\alpha|_N=1$. \\ 
+BWOC, assume that the normalized $\bv_\alpha$ is not unique, so that there is a $\bv_\alpha'\ne \bv_\alpha$ both satisfying $g(\bv_\alpha')=g(\bv_\alpha)=\alpha$ and $|\bv_\alpha|_N=1=|\bv_\alpha'|_N$.
+
 \end{document}
