@@ -44,8 +44,10 @@
 % vectors
 \newcommand*{\bv}{\mathbf{v}}
 \newcommand*{\bu}{\mathbf{u}}
+\newcommand*{\bs}{\mathbf{s}}
 % bold vector zero
 \newcommand*{\bvz}{\mathbf{0}}
+
 
 \newcommand*{\Cov}{\operatorname{Cov}}
 
@@ -114,9 +116,10 @@ If $\bv\ge 0$, define $g(\bv)$ as the largest $\lambda$ s.t. $A\bv\ge \lambda \b
 \vspace{2mm} \\
 Lemma (b): Assume $\bv\ge 0$, I claim $g(\bv)>0$ and $\forall c>0, g(c\bv)=g(v)$. We already know $g(\bv)\ge 0$ from above. Using lemma (a), we know that $A\bv>0$. It follows that there must be some $\lambda>0$ s.t. $A\bv\ge \lambda\bv$ proving the first part of the lemma. Consider the equation $A(c\bv)\ge \lambda (c\bv)$. Dividing both sides by $c$ gives the equation $A\bv\ge \lambda\bv$ (this is valid since we are really just looking at $n$ equations in $\R$). It follows that the equations $A(c\bv)\ge \lambda (c\bv)$ and $A\bv\ge \lambda \bv$ have the same set of solutions $\lambda$ and so $g(\bv)=g(c\bv)$ for $c>0$.
 \vspace{2mm} \\
+% this is "Collatz–Wielandt formula"
 Let $V=\{\bv:\bv \ge 0,\bv\ne \bvz\}, V_{\text{unit}}=\{\bv:\bv \ge 0, \bv \ne \bvz\}, \alpha=\sup g(V)$. \\
 Lemma (c) says that $g(c\bv)=g(\bv)$ so we know that the value $\alpha$ is unaffected by the magnitude of the vectors being considered (assuming those vectors are nonnegative). In other words $\alpha=\sup g(V)=\sup(V_{\text{unit}})$. \\
-The set $V_{\text{unit}}$ is closed and bounded, so it is compact. The function $g$ is continuous, as small changes in $\bv$ should lead to small changes in the maximum $\lambda$. It follows that $g$ attains a maximum on the set $V_{\text{unit}}$. As argued above, lemma (c) means that $\sup g(V)=\sup g(V_{\text{unit}})$. Since $g$ attains a maximum on $V_{\text{unit}}$ it attains that same maximum on $V$. This means $\alpha$ is not just the supremum of $g(V)$, but a maximum as well. As a result, there exists at least one vector $\bv_\alpha$ such that each2$g(\bv_\alpha)=\alpha$ and $\bv_\alpha \ge 0$. \\
+The set $V_{\text{unit}}$ is closed and bounded, so it is compact. The function $g$ is continuous, as small changes in $\bv$ should lead to small changes in the maximum $\lambda$. It follows that $g$ attains a maximum on the set $V_{\text{unit}}$. As argued above, lemma (c) means that $\sup g(V)=\sup g(V_{\text{unit}})$. Since $g$ attains a maximum on $V_{\text{unit}}$ it attains that same maximum on $V$. This means $\alpha$ is not just the supremum of $g(V)$, but a maximum as well. As a result, there exists at least one vector $\bv_\alpha$ such that $g(\bv_\alpha)=\alpha$ and $\bv_\alpha \ge 0$. \\
 \textit{NOTE}: While the value $\alpha$ is unique, there will always be multiple $\bv_\alpha$ due to the ability to rescale by a constant.
 \vspace{2mm} \\
 Lemma (c): I now claim that each $\bv_\alpha$ is an eigenvector of $A$ associated with eigenvalue $\alpha$. 
@@ -130,11 +133,25 @@ Using the linearity of $A$ we get $A\mathbf{s}=A^2\bv_\alpha-\alpha A\bv_a>\bvz$
 It follows that $A(A\bv_a)>\alpha(A\bv_\alpha)$. 
 Since every entry of $A(A\bv_a)$ is strictly larger than every entry of $\alpha(A\bv_a)$, there exists some $\epsilon>0$ so that $A(A\bv_\alpha)\ge (\alpha+\epsilon)(A\bv_a)$.
 However, by definition of $g$ and $\alpha$, $\alpha$ is the largest $\lambda$ satisfying $A\bu\ge \lambda\bu$ where $\bu \ge \bvz$ is an arbitrary vector.
-So finding a larger value $\alpha+\epsilon$ satisfying the same inequality is a contadiction.
-\vspace{2mm} \\
+Finding a larger value $\alpha+\epsilon$ satisfying the same inequality is a contradiction. 
+It also follows  that every $\bv_\alpha>\bvz$ because applying Lemma (a) to $A\bv_\alpha=\alpha\bv_a$ we get $A\bv_\alpha\ge 0$. Since $\alpha> 0$ then $\bv_\alpha\ge\bvz$ as well.
+\vspace{5mm} \\
 Lemma (d): I now claim that the vector $\bv_\alpha\ge \bvz$ satisfying $g(\bv_\alpha)=\alpha$ is unique, provided that it satisfies the normalization condition $\sum_{i=1}^n (\bv_\alpha)_i=1$. \\
-% The _N here denotes "nonnegative".
-Define the norm $|\bv|_N=\sum_{i=1}^n \bv_i$ for all nonnegative vectors $\bv\ge \bvz$ (equivalent to Manhattan distance since all entries are nonnegative). This means the normalization condition becomes $|\bv_\alpha|_N=1$. \\ 
-BWOC, assume that the normalized $\bv_\alpha$ is not unique, so that there is a $\bv_\alpha'\ne \bv_\alpha$ both satisfying $g(\bv_\alpha')=g(\bv_\alpha)=\alpha$ and $|\bv_\alpha|_N=1=|\bv_\alpha'|_N$.
-
+Define the operation $|\bv|_V=(|v_1|,|v_2|,\dots,|v_n|)$ to take the component-wise absolute value of a vector. 
+BWOC, assume that the normalized vector $\bv_\alpha$ is not unique.
+That is, there are nonnegative $\bv_\alpha'\ne \bv_\alpha$ both satisfying $g(\bv_\alpha')=g(\bv_\alpha)=\alpha$, and $\sum_{i=1}^n (\bv_\alpha)_i=1=\sum_{i=1}^n (\bv_\alpha')_i$.
+Let $\bs=\bv_\alpha-\bv_\alpha'\ne \bvz$.
+Then the normalization of $\bv_\alpha,\bv_\alpha'$ implies that $\sum_{i=1}^n\bs_i=0$.
+Unfortunately $g(\bs)$ may not be defined, as some entries could be negative.
+Instead consider $g(|\bs|_V)$. This is well-defined as $|\bs|_V\ge \bvz$ by definition. \\
+% Actually not true:
+% Because $|\dots|_V$ is defined componentwise and both $\bv_\alpha,\bv_\alpha'$ are nonnegative, we get $|\bs|_V=|\bv_\alpha|_V-|\bv_\alpha'|_V$.
+Let $\beta=g(|\bs|_V)$.
+Then by def. of $g$, $\beta$ is the maximum of the set $\{\lambda:A|\bs|_V\ge \lambda|\bs|_V\}$.
+So we have $A|\bs|_V \ge \beta|\bs|_V$.
+I claim that $|A\bs|_V\le A|\bs|_V$.
+As $|\dots|_V$ is defined term-by-term, we can apply the triangle inequality to the def. of matrix multiplication to get $|(A\bs)_i|=|\sum_{j=1}^nA_{ij}s_i|\le \sum_{j=1}^nA_{ij}|s_i|=(A_{ij}|\bs|)_i$.
+So this proves the desired fact $|A\bs|_V\le A|\bs|_V$.
+As $\bv_\alpha',\bv_\alpha$ are both eigenvectors associated with eigenvalue $\alpha$ we know $A\bv_\alpha=\alpha\bv_\alpha$ and $A\bv_\alpha'=\alpha\bv_\alpha'$.
+By linearity, $A\bs=A\bv_\alpha-A\bv_\alpha'=\alpha(\bv_\alpha-\bv_\alpha')=\alpha\bs$. Taking the component-wise absolute value of both sides gives $A|\bs|_V\ge|A\bs|_V=\alpha|\bs|_V$. Notice that $\beta$ is defined as the largest value $\lambda$ satisfying $A|\bs|_V\ge \lambda |\bs|_V$, so $\beta \ge \alpha$. However, $\alpha$ is definitionally the maximum value that $g$ attains for any nonnegative vector, so in fact $\beta=\alpha$. This means that $|\bs|_V$ is an eigenvector for $A$ associated with eigenvalue $\alpha$ and so $A|\bs|_V=\alpha|\bs|_V$. This means that the triangle inequality $A|\bs|_V\ge|A\bs|_V=\alpha|\bs|_V$ becomes an equality, giving $A|\bs|_V=A|\bs|_V$. The triangle inequality has equality only when all terms of the sums have the same sign, but this contradicts the fact that $\sum_{i=1}^ns_i=0$. 
 \end{document}
