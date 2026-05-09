@@ -134,7 +134,6 @@ It follows that $A(A\bv_a)>\alpha(A\bv_\alpha)$.
 Since every entry of $A(A\bv_a)$ is strictly larger than every entry of $\alpha(A\bv_a)$, there exists some $\epsilon>0$ so that $A(A\bv_\alpha)\ge (\alpha+\epsilon)(A\bv_a)$.
 However, by definition of $g$ and $\alpha$, $\alpha$ is the largest $\lambda$ satisfying $A\bu\ge \lambda\bu$ where $\bu \ge \bvz$ is an arbitrary vector.
 Finding a larger value $\alpha+\epsilon$ satisfying the same inequality is a contradiction. 
-It also follows  that every $\bv_\alpha>\bvz$ because applying Lemma (a) to $A\bv_\alpha=\alpha\bv_a$ we get $A\bv_\alpha\ge 0$. Since $\alpha> 0$ then $\bv_\alpha\ge\bvz$ as well.
 \vspace{5mm} \\
 Lemma (d): I now claim that the vector $\bv_\alpha\ge \bvz$ satisfying $g(\bv_\alpha)=\alpha$ is unique, provided that it satisfies the normalization condition $\sum_{i=1}^n (\bv_\alpha)_i=1$. \\
 Define the operation $|\bv|_V=(|v_1|,|v_2|,\dots,|v_n|)$ to take the component-wise absolute value of a vector. 
@@ -154,4 +153,6 @@ As $|\dots|_V$ is defined term-by-term, we can apply the triangle inequality to 
 So this proves the desired fact $|A\bs|_V\le A|\bs|_V$.
 As $\bv_\alpha',\bv_\alpha$ are both eigenvectors associated with eigenvalue $\alpha$ we know $A\bv_\alpha=\alpha\bv_\alpha$ and $A\bv_\alpha'=\alpha\bv_\alpha'$.
 By linearity, $A\bs=A\bv_\alpha-A\bv_\alpha'=\alpha(\bv_\alpha-\bv_\alpha')=\alpha\bs$. Taking the component-wise absolute value of both sides gives $A|\bs|_V\ge|A\bs|_V=\alpha|\bs|_V$. Notice that $\beta$ is defined as the largest value $\lambda$ satisfying $A|\bs|_V\ge \lambda |\bs|_V$, so $\beta \ge \alpha$. However, $\alpha$ is definitionally the maximum value that $g$ attains for any nonnegative vector, so in fact $\beta=\alpha$. This means that $|\bs|_V$ is an eigenvector for $A$ associated with eigenvalue $\alpha$ and so $A|\bs|_V=\alpha|\bs|_V$. This means that the triangle inequality $A|\bs|_V\ge|A\bs|_V=\alpha|\bs|_V$ becomes an equality, giving $A|\bs|_V=A|\bs|_V$. The triangle inequality has equality only when all terms of the sums have the same sign, but this contradicts the fact that $\sum_{i=1}^ns_i=0$. 
+\vspace{2mm} \\
+Lemma (e): It also follows that $\bv_\alpha>\bvz$ because applying Lemma (a) to $\bv_\alpha\ge \bvz$ gives$A\bv_\alpha> 0$. Since $A\bv_\alpha=\alpha\bv_a$ and $\alpha> 0$ then $\bv_\alpha>\bvz$.
 \end{document}
