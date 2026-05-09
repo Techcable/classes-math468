@@ -155,4 +155,15 @@ As $\bv_\alpha',\bv_\alpha$ are both eigenvectors associated with eigenvalue $\a
 By linearity, $A\bs=A\bv_\alpha-A\bv_\alpha'=\alpha(\bv_\alpha-\bv_\alpha')=\alpha\bs$. Taking the component-wise absolute value of both sides gives $A|\bs|_V\ge|A\bs|_V=\alpha|\bs|_V$. Notice that $\beta$ is defined as the largest value $\lambda$ satisfying $A|\bs|_V\ge \lambda |\bs|_V$, so $\beta \ge \alpha$. However, $\alpha$ is definitionally the maximum value that $g$ attains for any nonnegative vector, so in fact $\beta=\alpha$. This means that $|\bs|_V$ is an eigenvector for $A$ associated with eigenvalue $\alpha$ and so $A|\bs|_V=\alpha|\bs|_V$. This means that the triangle inequality $A|\bs|_V\ge|A\bs|_V=\alpha|\bs|_V$ becomes an equality, giving $A|\bs|_V=A|\bs|_V$. The triangle inequality has equality only when all terms of the sums have the same sign, but this contradicts the fact that $\sum_{i=1}^ns_i=0$. 
 \vspace{2mm} \\
 Lemma (e): It also follows that $\bv_\alpha>\bvz$ because applying Lemma (a) to $\bv_\alpha\ge \bvz$ gives$A\bv_\alpha> 0$. Since $A\bv_\alpha=\alpha\bv_a$ and $\alpha> 0$ then $\bv_\alpha>\bvz$.
+\vspace{2mm} \\
+Lemma (f): I now claim that if $\lambda\ne \alpha$ is some other eigenvalue, then $|\lambda|<\alpha$.
+The absolute value of $\lambda$ cannot be greater than $\alpha$ due to its def. as the supremum.
+So we already have $|\lambda|\le \alpha$. \\
+BWOC, assume that $|\lambda|=\alpha$.
+Then there is some eigenvector $\bu$ associated with the eigenvalue $\lambda$, so $A\bu=\lambda\bu$.
+Taking $|\dots|_A$ of both sides gives $|A\bu|=|\lambda||\bu|$.
+Applying the Triangle Inequality gives $A|\bu|\ge |A\bu|=|\lambda||\bu|$.
+It follows from def. of $g$ that $g(|\bu|)\ge \lambda$.
+This means that $\lambda \in \R^+$ and so $|\lambda|=\alpha$. 
+This contradicts the fact that $\lambda$ is distinct from $\alpha$.
 \end{document}
