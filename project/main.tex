@@ -194,4 +194,11 @@ Apply the product rule and notice $\frac{d}{d\lambda}\big((A-\lambda I)_{1j}\big
 \[ \frac{d}{d\lambda}\det(A-\lambda I)=-\det(A_{\setminus 11} -\lambda I)+\sum_{j=1}^n(-1)^{j+1}(A-\lambda I)_{ij}\frac{d}{d\lambda}(\det(A_{\setminus 1j}-\lambda I)) \]
 We can apply the same argument again to $\det(A_{\setminus 1j}-\lambda)$: 
 \[ \frac{d}{d\lambda}\det(A_{\setminus 1j}-\lambda)=-\det((A_{\setminus 1j})_{11}-\lambda I)+\sum_{i=1}^n (A_{\setminus {1j}}-\lambda I)\frac{d}{d\lambda}(\det((A_{\setminus 1j})_{\setminus 1j}-\lambda I) \]
+\vspace{2mm} \\
+Lemma (i): I claim that $f'(\alpha)\ne 0$. \\
+Assume that $\bu$ is an eigenvector of $B_k$ with eigenvalue $\gamma$.
+Subtract $(\lambda I)\bu =\lambda \bu $ from $A\bu=\gamma \bu$ to get $(A-\lambda I)\bu=(\gamma - \lambda)\bu$.
+Hence, if $\{\gamma_1,\gamma_2,\dots,\gamma_m\}$ are  the eigenvectors of $B_k$, then $\{\gamma_1-\lambda,\dots,\gamma_n-\lambda\}$ are the eigenvalues of $B_k-\lambda I$. 
+Since $\alpha$ is strictly greater than all eigenvalues of lambda, this means that all eigenvalues $\{\gamma_1-\alpha,\dots\}$ of $B_k-\lambda I$ are negative, meaning $\det(B_k-\lambda I)$ has sign $(-1)^{n-1}$.  \\
+Since each term $\det (B_k-\lambda I)$ all have the same sign, then the sum $f'(a)=\sum_{i=1}^n$
 \end{document}
