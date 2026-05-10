@@ -166,4 +166,22 @@ Applying the Triangle Inequality gives $A|\bu|\ge |A\bu|=|\lambda||\bu|$.
 It follows from def. of $g$ that $g(|\bu|)\ge \lambda$.
 This means that $\lambda \in \R^+$ and so $|\lambda|=\alpha$. 
 This contradicts the fact that $\lambda$ is distinct from $\alpha$.
+\vspace{2mm} \\
+Lemma (g): Let $B_k$ or $B$ be the $(n-1)\times(n-1)$ submatrix of $A$ obtained by deleting the $k$-th row and column (assuming $n>1$). 
+I claim that all eigenvalues of $B$ have magnitude strictly less than $\alpha$. \\
+\textit{Proof}: The arguments from lemmas (a)-(f) still apply to $B$.
+We get some maximum eigenvalue $\gamma>0$ and a unique associated eigenvector $\bu_{\gamma} > \bvz$. \\
+Let $\bu'$ be $\bu_\gamma$ with the addition of a zero to the deleted column.
+I now claim that $A\bu'> \lambda\bu$ due to the effect of the deleted column/row.
+Because $\bu$ is an eigenvector of $B$, we get $\gamma u_i=(A\bu_\gamma)_i=\sum_{j=1}^{n-1}B_{ij}u_j$ for every row $i$. \\
+Now we can translate this into the coordinates of $A$ simply by skipping over the deleted column/row $k$.
+For each row $i \ne k$, we get $u'_i=(A\bu')_i=\big(\sum_{j=1}^k A_{ij}u'_j)$.
+Changing from $\bu_\gamma$ to $\bu'$ translates from $B$ coordinates to $A$ coordinates and implicitly skips over the entry $A_{ik}$ because $u'_k=0$ by definition.
+So we satisfy the eigenvector requirement for all rows except $k$. \\
+In row $k$ we get $(A\bu')_k>u'_k=0$ since every entry of $A$ is positive and $\bu_\gamma>0$. \\
+This means that $A\bu'\ge \gamma\bu'$, $A\bu'\ne \gamma\bu'$, and $g(\bu')\ge \gamma$.
+Since $\alpha$ is the supremum of $g$ we get $\gamma \le \alpha$.
+However, if $g(\bu')=\gamma=\alpha$, then part (c) would apply and $\bu'$ would be an eigenvector of $A$.
+This is not possible because $A\bu' \ne \gamma\bu'$ (the inequality is strict in the deleted row).
+Therefore, $\gamma \le g(\bu')<\alpha$ and so the maximum eigenvector $\gamma$ of $B_k$ is strictly less than $\alpha$. 
 \end{document}
